@@ -944,10 +944,221 @@ kbd {
 
 @media (max-width: 720px) {
   .dash, .manage { grid-template-columns: 1fr; }
-  .dash__rail, .manage__rail { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .dash__rail, .manage__rail {
+    position: relative; height: auto;
+    border-right: 0; border-bottom: 1px solid var(--line);
+  }
   .dash__main, .manage__main { padding: 24px 16px; }
   .dash__h1-main { font-size: 36px; }
   .study__top, .study__rail, .study__foot { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ——— phones (iPhone 13 / mini / pro / pro max + Android) ——— */
+@media (max-width: 640px) {
+  /* Rail — kompakt oben statt seitlich */
+  .dash__rail, .manage__rail {
+    padding: 16px 16px 12px;
+    gap: 14px;
+  }
+  .rail__mark { padding-bottom: 12px; }
+  .rail__mark-glyph { font-size: 18px; }
+  .rail__mark-title { font-size: 10px; }
+  .rail__mark-sub { display: none; }
+  .rail__nav { gap: 0; }
+  .rail__topic { padding: 10px 8px; gap: 10px; }
+  .rail__topic-name { font-size: 13px; }
+  .rail__topic-meta { font-size: 10px; }
+  .rail__topic-ref { font-size: 9px; padding: 2px 5px; }
+  .rail__shortcuts { display: none; }
+  .rail__foot { padding-top: 12px; gap: 8px; }
+  .rail__manage-link { font-size: 11px; padding: 8px 10px; }
+
+  /* Hero & Buttons */
+  .dash__main, .manage__main { padding: 20px 16px 16px; }
+  .dash__hero { padding-bottom: 24px; }
+  .dash__date { margin-bottom: 12px; font-size: 10px; }
+  .dash__h1-lead { font-size: 10px; }
+  .dash__h1-main { font-size: 28px; line-height: 1.05; }
+  .dash__hero-actions {
+    margin-top: 16px; gap: 8px;
+    flex-direction: column; align-items: stretch;
+  }
+  .dash__hero-actions .btn { width: 100%; justify-content: center; }
+
+  /* Metric-Strip 2-Spaltig auf phone */
+  .metric-strip { grid-template-columns: 1fr 1fr; margin-bottom: 24px; }
+  .metric { padding: 14px; min-height: auto; gap: 6px; }
+  .metric__label { font-size: 9px; }
+  .metric__value { font-size: 30px; }
+  .metric__value span { font-size: 11px; }
+  .metric__foot { font-size: 9px; }
+  /* Heatmap: 21 Zellen passen quer eng — kleiner machen */
+  .metric--heat { grid-column: span 2; }
+  .heatmap { gap: 3px; }
+
+  /* Topic-Cards */
+  .topic-grid { margin-bottom: 28px; }
+  .topic-card { padding: 18px; gap: 12px; }
+  .topic-card__title { font-size: 22px; }
+  .topic-card__desc { font-size: 12px; }
+  .topic-card__stats dd { font-size: 16px; }
+  .topic-card__head { font-size: 9px; }
+
+  /* Schedule + Planned */
+  .dash__bottom { gap: 24px; margin-bottom: 24px; }
+  .sched__row {
+    grid-template-columns: 40px 44px 1fr 28px;
+    gap: 8px; padding: 8px 10px;
+  }
+  .sched__day, .sched__date { font-size: 9px; }
+  .sched__count { font-size: 11px; }
+  .planned__row {
+    grid-template-columns: 32px 1fr auto;
+    padding: 10px 12px; gap: 10px;
+  }
+  .planned__name { font-size: 12px; }
+  .planned__desc { font-size: 10px; margin-top: -4px; }
+
+  .dash__foot {
+    flex-direction: column; gap: 4px;
+    font-size: 9px; padding-top: 14px; align-items: flex-start;
+  }
+
+  /* ===== STUDY VIEW ===== */
+  .study__top {
+    padding: 12px 16px; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .study__top-left { gap: 10px; flex: 1 1 200px; min-width: 0; }
+  .study__crumb { font-size: 12px; gap: 6px; min-width: 0; overflow: hidden; }
+  .study__crumb-name {
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .study__crumb-ref { font-size: 9px; padding: 1px 5px; flex-shrink: 0; }
+  .iconbtn { font-size: 10px; padding: 4px 8px; flex-shrink: 0; }
+  .study__top-right { gap: 8px; }
+  .study__position em { font-size: 16px; }
+  .study__position .mono { font-size: 16px; }
+  .study__position-label { display: none; }
+  .study__rail { padding: 8px 16px 0; }
+
+  /* Stage: 1-Spalte, side-meta-left ausgeblendet */
+  .study__stage {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px 16px 24px;
+  }
+  .study__sidemeta--left { display: none; }
+  .study__sidemeta--right { gap: 12px; flex-direction: column; flex-wrap: nowrap; }
+  .study__sidemeta--right .sidemeta__block { min-width: 0; }
+
+  /* Flashcard: Aspect-Ratio aufgeben, Mindesthöhe knackig */
+  .cardstack { min-height: 460px; perspective: 1500px; }
+  .flashcard {
+    aspect-ratio: auto;
+    min-height: 460px;
+    max-width: 100%;
+  }
+  .flashcard__face {
+    padding: 22px 22px 18px;
+  }
+  .flashcard__corner { font-size: 9px; padding-bottom: 8px; flex-shrink: 0; }
+  .flashcard__body {
+    padding: 12px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    min-height: 0;
+  }
+  .flashcard__foot { flex-shrink: 0; }
+  .flashcard__q { font-size: 26px; line-height: 1.15; }
+  .flashcard__q--small { font-size: 15px; padding-bottom: 10px; margin-bottom: 12px; }
+  .flashcard__a { font-size: 14px; line-height: 1.5; }
+  .flashcard__foot { padding-top: 10px; }
+
+  .revealbtn { padding: 10px 14px; font-size: 13px; }
+  .revealbtn kbd { font-size: 9px; padding: 2px 4px; }
+
+  /* Grade-Buttons als 1-Spalte für gute Tap-Targets */
+  .gradebar__keys { grid-template-columns: 1fr; gap: 6px; }
+  .gradekey { padding: 10px 12px; gap: 12px; }
+  .gradekey__kbd { width: 28px; height: 28px; font-size: 12px; }
+  .gradekey__title { font-size: 13px; }
+  .gradekey__sub { font-size: 10px; }
+
+  .reviewbar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .reviewbar__stamp-k { width: 30px; height: 30px; font-size: 14px; }
+  .reviewbar__stamp-text { font-size: 12px; }
+  .reviewbar__stamp-text em { font-size: 14px; }
+  .reviewbar .btn { width: 100%; justify-content: center; }
+
+  /* Footer-Keymap auf phone unnötig */
+  .study__foot { display: none; }
+
+  /* Done-State */
+  .study__done-inner { padding: 24px 16px; }
+  .study__done-kicker { font-size: 10px; }
+  .study__done-h1 { font-size: 30px; margin-bottom: 24px; }
+  .study__done-grid { margin-bottom: 24px; }
+  .donecell { padding: 14px 8px; }
+  .donecell__n { font-size: 28px; }
+  .donecell__l { font-size: 9px; }
+
+  /* ===== MANAGE VIEW ===== */
+  .manage__head {
+    flex-direction: column; align-items: stretch;
+    gap: 16px;
+  }
+  .manage__title { font-size: 24px; }
+  .manage__sub { font-size: 9px; }
+  .manage__actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .manage__actions .btn { flex: 1 1 calc(50% - 4px); justify-content: center; }
+  .manage__filters { grid-template-columns: 1fr; }
+  .manage__filter { padding: 10px 12px; }
+  .manage__notice { font-size: 11px; }
+
+  /* Tabelle: kompakter, scrollt horizontal */
+  .manage__table th { padding: 10px 12px; font-size: 9px; }
+  .manage__table td { padding: 12px; font-size: 12px; }
+  .manage__row-q { max-width: 240px; }
+  .manage__topic-name { font-size: 12px; }
+  .manage__row-tags .tagchip { font-size: 9px; padding: 1px 5px; }
+  .manage__row-actions { gap: 2px; flex-direction: column; }
+  .manage__row-actions .btn { font-size: 10px; padding: 5px 8px; }
+
+  /* Modal */
+  .modal-backdrop { padding: 12px; }
+  .modal { padding: 18px 16px; max-height: 92vh; }
+  .modal__title { font-size: 22px; margin-bottom: 14px; }
+  .modal__grid { gap: 12px; }
+}
+
+/* Kleinste Phones (iPhone SE / 13 mini im engsten Layout) */
+@media (max-width: 380px) {
+  .dash__h1-main { font-size: 24px; }
+  .topic-card__title { font-size: 20px; }
+  .topic-card { padding: 16px; }
+  .metric-strip { grid-template-columns: 1fr; }
+  .metric--heat { grid-column: auto; }
+  .flashcard__q { font-size: 22px; }
+  .flashcard__face { padding: 18px 18px 16px; }
+  .flashcard__a { font-size: 13px; }
+  .cardstack { min-height: 440px; }
+  .flashcard { min-height: 440px; }
+  .gradekey__title { font-size: 12px; }
+  .study__done-h1 { font-size: 26px; }
+}
+
+/* Touch-Geräte: Hover-Effekte zähmen, damit Buttons nicht „kleben" */
+@media (hover: none) {
+  .gradekey:hover { transform: none; }
+  .topic-card:hover { background: var(--ink-2); }
+  .rail__topic:hover:not(:disabled) {
+    background: transparent; border-left-color: transparent; color: var(--ivory-dim);
+  }
 }
 
 /* variant: focus mode */
