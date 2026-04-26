@@ -1,0 +1,431 @@
+{
+  "topic": {
+    "id": "topic-3-architecture",
+    "name": "Architecture, Networking, Cloud / On-Premise",
+    "description": "Well-Architected Framework, Datenmodell, Storage, Replica Sets, Sharded Cluster, Document Model, Network Security und Cloud-vs-On-Premise-vs-Hybrid.",
+    "status": "active",
+    "ref": "ARCH"
+  },
+  "cards": [
+    {
+      "id": "t3-waf-operational",
+      "topicId": "topic-3-architecture",
+      "question": "Was prüft die Säule \"Operational Efficiency\" im MongoDB Well-Architected Framework?",
+      "answer": "Operational Efficiency adressiert Automation, Monitoring und Observability mit dem Ziel, den laufenden Betrieb effizient zu halten. Geprüft wird: Wie automatisiert sind Provisionierung, Skalierung und Patching? Sind Metriken, Logs und Traces sichtbar genug, um Probleme früh zu erkennen?",
+      "followUpQuestions": [
+        "Welche Atlas-Features unterstützen Operational Efficiency direkt?",
+        "Wie unterscheidet sich Monitoring in Atlas vs. Self-Managed?",
+        "Welche Automatisierungspfade gibt es (Atlas CLI, Terraform, Kubernetes Operator)?"
+      ],
+      "tags": ["well-architected", "operations", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-waf-security",
+      "topicId": "topic-3-architecture",
+      "question": "Was prüft die Säule \"Security\" im MongoDB Well-Architected Framework?",
+      "answer": "Security deckt Netzwerk-Konfiguration, Access Control sowie alle Maßnahmen ab, die Datenintegrität und Datenschutz sicherstellen. Geprüft wird: Wer darf rein, wer darf was sehen, sind Daten in Transit und at Rest verschlüsselt, und ist der Zugriff auditierbar?",
+      "followUpQuestions": [
+        "Welche Atlas-Defaults gehören zu dieser Säule (TLS, IP Access List)?",
+        "Wie ergänzen VPC Peering und Private Endpoints diese Säule?",
+        "Welche Rolle spielt Auditing in regulierten Branchen?"
+      ],
+      "tags": ["well-architected", "security", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-waf-reliability",
+      "topicId": "topic-3-architecture",
+      "question": "Was prüft die Säule \"Reliability\" im MongoDB Well-Architected Framework?",
+      "answer": "Reliability sorgt für High Availability, Backups und Disaster-Recovery — alles, was Downtime minimiert und Datenverlust verhindert. Geprüft wird: Wie schnell wechselt das System bei Ausfall auf einen gesunden Knoten, und wie zuverlässig lassen sich Daten wiederherstellen?",
+      "followUpQuestions": [
+        "Wie unterscheidet sich Reliability von Durability?",
+        "Welche RTO/RPO-Werte sind realistisch mit Atlas?",
+        "Welche Rolle spielt Multi-Region für diese Säule?"
+      ],
+      "tags": ["well-architected", "reliability", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-waf-performance",
+      "topicId": "topic-3-architecture",
+      "question": "Was prüft die Säule \"Performance\" im MongoDB Well-Architected Framework?",
+      "answer": "Performance betrachtet vertikale und horizontale Skalierung im Kontext von Application-Wachstum — also: skaliert die Datenbank mit Last und Datenvolumen, ohne dass Antwortzeiten leiden? Geprüft wird die Wahl von Indizes, Sharding-Strategie und Hardware-Tier passend zur erwarteten Workload.",
+      "followUpQuestions": [
+        "Wie hängt diese Säule mit Indexes und Aggregation Pipeline zusammen?",
+        "Wann wechselt man von vertikaler zu horizontaler Skalierung?",
+        "Welche Rolle spielt das Atlas Performance Advisor Tooling?"
+      ],
+      "tags": ["well-architected", "performance", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-waf-cost",
+      "topicId": "topic-3-architecture",
+      "question": "Was prüft die Säule \"Cost Optimization\" im MongoDB Well-Architected Framework?",
+      "answer": "Cost Optimization gewährleistet Sichtbarkeit über die anfallenden Kosten und identifiziert Optimierungsmöglichkeiten bei der MongoDB-Nutzung. Geprüft wird, ob Tier-Größen, Storage-Class (z. B. Online Archive für kalte Daten) und Region-Auswahl zur tatsächlichen Last passen — und ob es Waste gibt.",
+      "followUpQuestions": [
+        "Wie unterstützt Online Archive Cost Optimization?",
+        "Welche Atlas-Tools machen Kosten transparent?",
+        "Wann ist horizontale günstiger als vertikale Skalierung?"
+      ],
+      "tags": ["well-architected", "cost", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-arch-datamodel",
+      "topicId": "topic-3-architecture",
+      "question": "Wie ist das Datenmodell in MongoDB organisiert?",
+      "answer": "Document-based: zusammengehörige Daten werden als JSON-Dokumente eingebettet, statt sie auf mehrere Tabellen zu verteilen. Das Schema ist flexibel — jedes Dokument kann andere Felder haben — und reduziert oder eliminiert JOINs für typische Application-Queries.",
+      "followUpQuestions": [
+        "Was sind die Vorteile gegenüber relationalen Tabellen?",
+        "Wann führt Schema-Flexibilität zu Problemen?",
+        "Wie sieht ein typischer Embed-vs-Reference-Trade-off aus?"
+      ],
+      "tags": ["data-model", "documents", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t3-arch-schema-flex",
+      "topicId": "topic-3-architecture",
+      "question": "Was bedeutet \"Schema-flexibel\" bei MongoDB konkret?",
+      "answer": "Jedes Dokument einer Collection kann unterschiedliche Felder enthalten. Es gibt kein hartcodiertes Schema, das beim Schreiben erzwungen wird — die Anwendung kann neue Felder hinzufügen, ohne eine ALTER-TABLE-Migration. Optional kann man trotzdem JSON-Schema-Validierung erzwingen, wenn man Konsistenz braucht.",
+      "followUpQuestions": [
+        "Welche Risiken birgt fehlende Schema-Validierung?",
+        "Wie funktioniert MongoDB-Schema-Validation?",
+        "Wann ist Schema-Disziplin wichtiger als Flexibilität?"
+      ],
+      "tags": ["data-model", "schema", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-arch-storage-engine",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist die Storage Engine bei MongoDB, und welche ist der Default?",
+      "answer": "Die Storage Engine ist die Hauptkomponente, die für die Verwaltung der Daten auf der Disk zuständig ist — sie kümmert sich um Read/Write-I/O, Cache, Compression und Locking. **WiredTiger** ist die Default-Engine seit MongoDB 3.2 und liefert Document-Level-Locking sowie Snappy-Compression out of the box.",
+      "followUpQuestions": [
+        "Welche Alternative-Engines gab es historisch (MMAPv1)?",
+        "Was bedeutet Document-Level-Locking für Concurrency?",
+        "Welche Kompressions-Optionen bietet WiredTiger?"
+      ],
+      "tags": ["storage", "wiredtiger", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-replica-was",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist ein Replica Set bei MongoDB?",
+      "answer": "Ein Replica Set ist eine Gruppe von Server-Instanzen mit identischem Datenbestand. Ein **Primary** nimmt Writes entgegen, **Secondaries** replizieren die Operationen über das **Oplog** asynchron mit. Replica Sets sind die Basis für High Availability bei MongoDB.",
+      "followUpQuestions": [
+        "Wie viele Knoten sind typisch in einem Replica Set?",
+        "Wie unterscheiden sich Primary und Secondary?",
+        "Wie verhält sich das System, wenn der Primary ausfällt?"
+      ],
+      "tags": ["replica-set", "availability", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-replica-roles",
+      "topicId": "topic-3-architecture",
+      "question": "Welche Rolle spielt das Oplog in einem Replica Set?",
+      "answer": "Das Oplog ist ein Log-Buch, in dem jede Write-Operation des Primary gespeichert wird. Secondaries lesen das Oplog und spielen die Operationen lokal nach, um konsistent zu bleiben. Das Oplog ist außerdem die Grundlage für Change Streams, mongosync und Disaster-Recovery.",
+      "followUpQuestions": [
+        "Wie groß ist das Oplog typischerweise dimensioniert?",
+        "Was passiert, wenn ein Secondary zu lange offline ist?",
+        "Wie hängt das Oplog mit Change Streams zusammen?"
+      ],
+      "tags": ["replica-set", "oplog", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-replica-election",
+      "topicId": "topic-3-architecture",
+      "question": "Wie funktioniert die Election eines neuen Primary in einem Replica Set?",
+      "answer": "Wenn der Primary ausfällt, läuft eine Election unter den Secondaries: sie stimmen ab, und der Knoten mit den aktuellsten Daten wird neuer Primary. Damit eine Mehrheit eindeutig zustande kommt, muss die Anzahl stimmberechtigter Knoten **ungerade** sein — typisch sind 3 oder 5.",
+      "followUpQuestions": [
+        "Warum sind ungerade Anzahlen wichtig?",
+        "Was sind Arbiter, und wozu dienen sie?",
+        "Wie lange dauert eine Election in der Praxis?"
+      ],
+      "tags": ["replica-set", "election", "availability", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-replica-failover",
+      "topicId": "topic-3-architecture",
+      "question": "Wie funktioniert der automatische Failover in einem Replica Set?",
+      "answer": "Bei Ausfall des Primary übernimmt automatisch ein gewählter Secondary die Primary-Rolle. Der Driver erkennt den Wechsel via SDAM (Server Discovery and Monitoring) und retried die fehlgeschlagene Operation transparent. Der Failover-Prozess ist typischerweise unter 12 Sekunden vom Heartbeat-Verlust bis zum neuen Primary.",
+      "followUpQuestions": [
+        "Was ist SDAM beim Driver?",
+        "Wie verhalten sich offene Schreibvorgänge während Failover?",
+        "Welche Rolle spielen retryable writes?"
+      ],
+      "tags": ["replica-set", "failover", "availability", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-shard-was",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist ein Sharded Cluster, und welches Problem löst er?",
+      "answer": "Ein Sharded Cluster verteilt einen großen Datensatz in kleinere \"Chunks\" auf mehrere Server (Shards). Jedes Shard hält nur eine Partition der Daten. Sharding löst die Probleme einzelner Server: zu viel Datenvolumen, zu hohe Lese-/Schreiblast und das Bedürfnis nach geografischer Verteilung der Daten.",
+      "followUpQuestions": [
+        "Wie unterscheidet sich Sharded Cluster vom Replica Set?",
+        "Welche Komponenten gehören zu einem Sharded Cluster?",
+        "Welche Aufgaben übernehmen die Config Servers?"
+      ],
+      "tags": ["sharding", "scalability", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-shard-key",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist ein Shard Key, und wofür wird er verwendet?",
+      "answer": "Der Shard Key ist das Feld (oder die Felder) im Dokument, anhand dessen MongoDB Daten auf die Shards verteilt. Beispiel: bei einem Shard Key auf `country` landen Dokumente mit `country: \"DE\"` auf dem Server in Deutschland — was DSGVO-Anforderungen für Daten-Lokalität unterstützt.",
+      "followUpQuestions": [
+        "Warum ist die Wahl des Shard Keys schwer rückgängig zu machen?",
+        "Was ist ein Hot Shard, und wie vermeidet man ihn?",
+        "Welche Rolle spielen Compound Shard Keys?"
+      ],
+      "tags": ["sharding", "shard-key", "data-residency", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-shard-when",
+      "topicId": "topic-3-architecture",
+      "question": "Wann nutzt man Sharding statt vertikaler Skalierung?",
+      "answer": "Sharding ist sinnvoll bei (1) hoher Verfügbarkeitsanforderung mit nur teilweisem Ausfallrisiko und geografischer Verteilung, (2) Datenmenge, die einen einzelnen Server übersteigt, (3) Lese-/Schreiblast jenseits eines einzelnen Servers, (4) schnellem oder unvorhersehbarem Wachstum, (5) Cost Optimization (horizontal skaliert linearer als vertikal) und (6) Multi-Tenant-Architekturen mit dedizierten Shards pro Kunde.",
+      "followUpQuestions": [
+        "Welche operative Komplexität bringt Sharding mit?",
+        "Wann ist Replica Set ohne Sharding ausreichend?",
+        "Welche Multi-Tenant-Pattern profitieren am meisten?"
+      ],
+      "tags": ["sharding", "scalability", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-shard-config",
+      "topicId": "topic-3-architecture",
+      "question": "Wozu dienen die Config Servers in einem Sharded Cluster?",
+      "answer": "Config Servers speichern die Routing-Metadaten — also welches Chunk auf welchem Shard liegt. Ohne sie weiß der `mongos`-Router nicht, wo er eine Query hinleiten soll. Config Servers sind selbst ein Replica Set, damit sie hochverfügbar sind.",
+      "followUpQuestions": [
+        "Was ist `mongos`, und welche Rolle spielt er?",
+        "Was passiert, wenn alle Config Servers ausfallen?",
+        "Wie viele Config Server sind typisch?"
+      ],
+      "tags": ["sharding", "config-server", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-doc-fields",
+      "topicId": "topic-3-architecture",
+      "question": "Wie sind Dokumente in MongoDB strukturiert?",
+      "answer": "MongoDB speichert Daten als Dokumente in Field-Value-Pairs. Werte können primitive Typen (Strings, Numbers, Dates, Booleans), Arrays oder verschachtelte Objekte sein. Ein Dokument kann ganze Objektgraphen abbilden — z. B. eine Bestellung mit Positionen und Lieferadresse als ein einziges Dokument.",
+      "followUpQuestions": [
+        "Was ist die maximale Größe eines Dokuments?",
+        "Wann lohnt sich Embedding, wann Referenzieren?",
+        "Welche Datentypen unterstützt BSON, die JSON nicht hat?"
+      ],
+      "tags": ["data-model", "documents", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t3-doc-bson",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist BSON und wie unterscheidet es sich von JSON?",
+      "answer": "BSON (Binary JSON) ist das interne Speicherformat von MongoDB. Es ist eine binäre Repräsentation von JSON-ähnlichen Dokumenten und unterstützt zusätzliche Datentypen wie ObjectId, Date, Decimal128 und Binary, die reines JSON nicht kennt. BSON ist platzsparender und schneller zu parsen als Text-JSON.",
+      "followUpQuestions": [
+        "Warum nutzt MongoDB nicht direkt JSON?",
+        "Was ist eine ObjectId und wie wird sie generiert?",
+        "Welche Rolle spielt BSON für Aggregation Pipelines?"
+      ],
+      "tags": ["data-model", "bson", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-doc-unstructured",
+      "topicId": "topic-3-architecture",
+      "question": "Wie geht MongoDB mit unstrukturierten Daten wie Bildern, Audio oder PDFs um?",
+      "answer": "Unstrukturierte Binärdaten werden typischerweise nicht direkt im Dokument gespeichert (16 MB Limit), sondern extern abgelegt — z. B. in S3 oder Blob Storage — und nur als **Referenz-Link** im Dokument geführt. Für gezielte Anwendungen mit kleineren Binärblobs gibt es alternativ GridFS, das Dateien in Chunks speichert.",
+      "followUpQuestions": [
+        "Wofür wurde GridFS entworfen?",
+        "Welche Rolle spielt Atlas Data Federation für Hybrid-Storage?",
+        "Wie sehen Best Practices für Bilder-Pipelines aus?"
+      ],
+      "tags": ["data-model", "unstructured", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-net-defaults",
+      "topicId": "topic-3-architecture",
+      "question": "Welche Netzwerk-Sicherheits-Defaults bietet Atlas out of the box?",
+      "answer": "Atlas erzwingt **TLS/SSL für alle Verbindungen**, betreibt **VPCs** für Projekte mit Dedicated Clusters und nutzt **IP Access Lists**, die festlegen, welche IP-Adressen sich überhaupt authentifizieren dürfen. Ohne Eintrag in der IP Access List wird der TCP-Handshake bereits abgewiesen.",
+      "followUpQuestions": [
+        "Was bedeutet \"Mandatory TLS\" konkret?",
+        "Wie unterscheidet sich Shared- von Dedicated-Tier in Bezug auf VPCs?",
+        "Wie pflegt man IP Access Lists in CI/CD?"
+      ],
+      "tags": ["network-security", "atlas", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-net-vpc-peering",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist VPC Peering und welche Analogie hilft beim Verständnis?",
+      "answer": "VPC Peering ist eine private Verbindung zwischen der Customer-VPC und der Atlas-VPC über das Cloud-Backbone (AWS, Azure, GCP). Die Kommunikation läuft über einen eigenen Tunnel — Daten sehen nie das öffentliche Internet. **Analogie:** Eine VPC ist wie ein eigener Bürotrakt in einem riesigen Bürogebäude (der Cloud). Niemand außer den eigenen Mitarbeitern hat Zutritt; VPC Peering ist eine direkte Tür zwischen zwei Büros.",
+      "followUpQuestions": [
+        "Welche Cloud-Provider unterstützen VPC Peering mit Atlas?",
+        "Welche IP-Range-Konflikte können auftreten?",
+        "Welche Limits gelten pro Atlas-Projekt?"
+      ],
+      "tags": ["network-security", "vpc-peering", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-net-private-endpoint",
+      "topicId": "topic-3-architecture",
+      "question": "Was ist ein Private Endpoint, und warum ist er sicherer als VPC Peering?",
+      "answer": "Bei Private Endpoints erscheint Atlas als private IP direkt im Customer-Netzwerk (VPC). Die Verbindung ist **unidirektional** — nur der Kunde kann Atlas erreichen, niemals umgekehrt. Implementiert über AWS PrivateLink, Azure Private Link oder GCP Private Service Connect. Sicherer als VPC Peering, weil keine bidirektionale Routen-Verbindung entsteht.",
+      "followUpQuestions": [
+        "Warum ist Unidirektionalität ein Sicherheitsplus?",
+        "Wann wählt man Peering, wann Private Endpoint?",
+        "Welche Latenz- und Kostenunterschiede gibt es?"
+      ],
+      "tags": ["network-security", "private-endpoint", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-net-ip-list",
+      "topicId": "topic-3-architecture",
+      "question": "Welchen Zweck erfüllt die IP Access List in Atlas?",
+      "answer": "Die IP Access List legt fest, welche IP-Adressen oder CIDR-Blöcke sich überhaupt zur Datenbank authentifizieren dürfen. Versucht eine nicht-gelistete IP eine Verbindung, wird der Handshake bereits auf Netzwerk-Ebene abgewiesen — bevor Credentials geprüft werden. Erste Verteidigungslinie vor jeder Authentifizierung.",
+      "followUpQuestions": [
+        "Wie pflegt man dynamische IPs (z. B. Cloud-Functions)?",
+        "Wie unterscheidet sich das von Private Endpoints?",
+        "Welche Rolle spielt das in Multi-Cloud-Setups?"
+      ],
+      "tags": ["network-security", "ip-access-list", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t3-cloud-was",
+      "topicId": "topic-3-architecture",
+      "question": "Was bedeutet \"Cloud (Atlas)\" als Deployment-Variante?",
+      "answer": "Vollständig gemanagte Database-as-a-Service auf AWS, Azure oder GCP. MongoDB übernimmt Betrieb, Patches, Backups und Skalierung — der Kunde wählt Provider, Region, Tier und konsumiert die DB als Service. Daten und Compute laufen in der Public Cloud des gewählten Providers.",
+      "followUpQuestions": [
+        "Was ist DBaaS im Detail?",
+        "Welche Rolle spielt die Region-Wahl?",
+        "Wie unterscheidet sich Atlas Multi-Region von Single-Region?"
+      ],
+      "tags": ["deployment", "cloud", "atlas", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t3-cloud-mehrwert",
+      "topicId": "topic-3-architecture",
+      "question": "Welche Vorteile bietet Atlas gegenüber einem Self-Hosted-Setup?",
+      "answer": "Schnelle Time-to-Market, elastisch skalierbar, niedrige TCO, globale Reichweite, kein DBA-Team nötig — und Innovations-Features stehen sofort nach Release zur Verfügung. Ideal für Startups mit schnellem Go-Live, Cloud-First-Konzerne, globale Apps mit Multi-Region-Setup und digital-native Produkte.",
+      "followUpQuestions": [
+        "Wie wirkt sich Managed Service auf Operational Efficiency aus?",
+        "Welche typischen Cloud-First-Branchen wählen Atlas?",
+        "Wann zahlt sich Atlas trotz höherer Listenpreise aus (TCO)?"
+      ],
+      "tags": ["deployment", "cloud", "atlas", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-onprem-was",
+      "topicId": "topic-3-architecture",
+      "question": "Was bedeutet \"On-Premise (Enterprise Advanced)\" als Deployment-Variante?",
+      "answer": "Self-Hosted MongoDB auf eigenen Servern — gleiche Datenbank-Engine wie Atlas, aber Betrieb durch das Kundenteam. Einsatz überall dort, wo Daten regulatorisch nicht in die Public Cloud dürfen, etwa in Banken, Versicherungen oder im öffentlichen Sektor.",
+      "followUpQuestions": [
+        "Welche Sicherheits-Features ergänzen Enterprise Advanced gegenüber Community?",
+        "Welche regulatorischen Treiber zwingen zu On-Prem?",
+        "Welche operativen Aufgaben bleiben beim Kundenteam?"
+      ],
+      "tags": ["deployment", "on-premise", "enterprise-advanced", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t3-onprem-mehrwert",
+      "topicId": "topic-3-architecture",
+      "question": "Welche Vorteile hat On-Premise gegenüber Cloud?",
+      "answer": "Volle Kontrolle über Daten und Hardware, Daten verlassen das eigene Netzwerk nicht, tiefes Tuning bis auf Kernel- und Storage-Ebene möglich, regulatorisch maximal konform. Wenn Daten nachweislich auf bestimmter Hardware bleiben müssen oder Audit-Anforderungen volle Kontrolle verlangen, ist On-Prem oft die einzige Option.",
+      "followUpQuestions": [
+        "Welche Rolle spielen Ops Manager / Cloud Manager dabei?",
+        "Welche Performance-Tuning-Hebel hat man on-prem zusätzlich?",
+        "Wie kombiniert man On-Prem mit Atlas (Hybrid)?"
+      ],
+      "tags": ["deployment", "on-premise", "enterprise-advanced", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-hybrid-was",
+      "topicId": "topic-3-architecture",
+      "question": "Was bedeutet \"Hybrid\" als Deployment-Variante?",
+      "answer": "Hybrid ist eine Mischung aus Atlas und On-Premise: sensible oder regulierte Daten werden im eigenen Rechenzentrum gehalten, alles andere läuft in Atlas. Das ermöglicht Compliance-Konformität für sensible Workloads bei gleichzeitiger Flexibilität für den Rest.",
+      "followUpQuestions": [
+        "Welche Tools unterstützen Hybrid (mongosync, Cluster-to-Cluster)?",
+        "Wie sehen typische Cut-Lines aus (welche Daten on-prem)?",
+        "Welche Latenz-Probleme können bei Hybrid auftreten?"
+      ],
+      "tags": ["deployment", "hybrid", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t3-hybrid-mehrwert",
+      "topicId": "topic-3-architecture",
+      "question": "Welchen strategischen Mehrwert hat ein Hybrid-Setup?",
+      "answer": "Flexibilität pro Workload, Compliance-Konformität für sensible Daten, schrittweise Cloud-Migration ohne Big-Bang-Risiko — quasi \"das Beste aus beiden Welten\". Banken oder Versicherungen können so neue Workloads cloud-nativ bauen, während Kerndaten zunächst On-Prem bleiben.",
+      "followUpQuestions": [
+        "Wie sieht ein typischer Migration-Pfad Hybrid → Atlas aus?",
+        "Welche Kosten-Trade-offs entstehen bei Hybrid?",
+        "Wie spielen MAAP und Hybrid in AI-Projekten zusammen?"
+      ],
+      "tags": ["deployment", "hybrid", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t3-vpc-vs-private",
+      "topicId": "topic-3-architecture",
+      "question": "Worin unterscheiden sich VPC Peering und Private Endpoints konkret?",
+      "answer": "VPC Peering verbindet zwei VPCs **bidirektional** über das Cloud-Backbone — beide Seiten können Routen aufbauen. Private Endpoints exponieren Atlas als private IP **unidirektional** im Customer-Netzwerk; nur der Kunde initiiert Verbindungen. Private Endpoints gelten als sicherer und werden über AWS PrivateLink / Azure Private Link / GCP Private Service Connect realisiert.",
+      "followUpQuestions": [
+        "Welche Setup-Komplexität haben beide Optionen?",
+        "Wie wirken sich beide auf Latenz und Kosten aus?",
+        "Wann reicht IP Access List + TLS allein?"
+      ],
+      "tags": ["network-security", "vpc-peering", "private-endpoint", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    }
+  ]
+}

@@ -1,0 +1,907 @@
+{
+  "topic": {
+    "id": "topic-1-mongodb",
+    "name": "MongoDB Produktportfolio",
+    "description": "Layer 1–5 der MongoDB-Plattform: Datenbank, Data Services, Application & Edge, Tools & Enabler, Ökosystem.",
+    "status": "active",
+    "ref": "L1–L5"
+  },
+  "cards": [
+    {
+      "id": "t1-atlas-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist MongoDB Atlas?",
+      "answer": "Atlas ist MongoDB als fertiger Cloud-Service (Database-as-a-Service). Der Kunde klickt in wenigen Minuten eine Datenbank zusammen, MongoDB übernimmt alles Drumherum: Server, Updates, Backups, Skalierung. Läuft bei AWS, Azure oder Google Cloud.",
+      "followUpQuestions": [
+        "Was genau bedeutet Database-as-a-Service?",
+        "Welche drei Cloud-Provider werden unterstützt?",
+        "Wie unterscheidet sich Atlas von Enterprise Advanced?"
+      ],
+      "tags": ["layer-1", "atlas", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-atlas-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Atlas für ein Startup?",
+      "answer": "Atlas nimmt dem Team Betrieb, Patching, Backups und Skalierung ab. Ein Startup kann in Tagen live gehen statt in Monaten, ohne dass jemand sich um Hardware oder Admin-Aufgaben kümmern muss. Das Team fokussiert sich auf Produkt statt Infrastruktur.",
+      "followUpQuestions": [
+        "Welche operativen Aufgaben entfallen konkret?",
+        "Wie wirkt sich das auf Time-to-Market aus?",
+        "Was passiert, wenn die App plötzlich 10.000 Nutzer bekommt?"
+      ],
+      "tags": ["layer-1", "atlas", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-atlas-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert Atlas auf hohem Level?",
+      "answer": "Atlas ist ein Managed Service: MongoDB betreibt Replica Sets und Sharded Cluster in AWS-, Azure- oder GCP-Regionen; der Kunde wählt Provider, Region, Tier und bekommt einen Connection String. Monitoring, automatische Backups, Auto-Scaling und Sicherheits-Updates sind Teil des Dienstes.",
+      "followUpQuestions": [
+        "Was ist ein Replica Set vs. Sharded Cluster?",
+        "Welche Rolle spielt die Region-Wahl für Latenz und Compliance?",
+        "Was bedeutet Auto-Scaling im Atlas-Kontext?"
+      ],
+      "tags": ["layer-1", "atlas", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-atlas-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen typischen Use Case gibt es für Atlas?",
+      "answer": "Ein Startup will in Tagen live gehen statt in Monaten. Es klickt sich einen Atlas-Cluster zusammen, und die ersten 10.000 Nutzer kommen, ohne dass jemand sich um Server kümmert.",
+      "followUpQuestions": [
+        "Warum ist Atlas besonders attraktiv für POCs?",
+        "Welche alternativen Use Cases gibt es in regulierten Branchen?",
+        "Wann würdest du stattdessen Enterprise Advanced empfehlen?"
+      ],
+      "tags": ["layer-1", "atlas", "use-case", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-ea-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist MongoDB Enterprise Advanced?",
+      "answer": "Enterprise Advanced ist die lizenzierte Version zum Selbstbetreiben. Gleiche Datenbank-Engine wie Atlas, aber der Kunde lässt sie im eigenen Rechenzentrum laufen. Enthält Support und zusätzliche Sicherheits-Features für Konzerne.",
+      "followUpQuestions": [
+        "Welche Sicherheits-Features kommen zusätzlich zu Community dazu?",
+        "Was bedeutet 'Self-Hosted' im Enterprise-Kontext?",
+        "Welche Rolle spielt der Enterprise-Support?"
+      ],
+      "tags": ["layer-1", "enterprise-advanced", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-ea-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert hat Enterprise Advanced gegenüber Atlas?",
+      "answer": "Daten verlassen das eigene Netzwerk nicht — entscheidend, wenn Regulierung, Datenschutz oder vertragliche Vorgaben Public Cloud ausschließen. Gleiche Engine wie Atlas, aber unter voller Kontrolle des Kunden inkl. Enterprise-Support.",
+      "followUpQuestions": [
+        "In welchen Branchen ist On-Prem regulatorisch vorgegeben?",
+        "Was gibt der Kunde auf, wenn er Enterprise statt Atlas wählt?",
+        "Wie sieht ein Hybrid-Szenario Atlas + Enterprise aus?"
+      ],
+      "tags": ["layer-1", "enterprise-advanced", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-ea-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert der Betrieb von Enterprise Advanced?",
+      "answer": "Der Kunde installiert die Enterprise-Binaries auf eigener Hardware oder Private Cloud und betreibt Replica Sets/Sharded Cluster selbst. Ops Manager oder Cloud Manager dienen als Management-Plane für Monitoring, Backups und Updates; Support kommt direkt von MongoDB.",
+      "followUpQuestions": [
+        "Wie unterscheiden sich Ops Manager und Cloud Manager?",
+        "Welche operativen Aufgaben bleiben beim Kundenteam?",
+        "Wo liegen typische Fallstricke im Self-Managed-Betrieb?"
+      ],
+      "tags": ["layer-1", "enterprise-advanced", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-ea-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für Enterprise Advanced?",
+      "answer": "Eine Bank darf ihre Kundendaten regulatorisch nicht in eine Public Cloud legen. Sie betreibt MongoDB im eigenen Rechenzentrum — gleiche Technologie wie Atlas, aber hinter den eigenen Firewalls.",
+      "followUpQuestions": [
+        "Welche weiteren regulierten Branchen haben ähnliche Anforderungen?",
+        "Wie könnte eine schrittweise Migration Richtung Atlas aussehen?",
+        "Welche Security-Features sind für Banken besonders relevant?"
+      ],
+      "tags": ["layer-1", "enterprise-advanced", "use-case", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-ce-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist die MongoDB Community Edition?",
+      "answer": "Community Edition ist die kostenlose Open-Source-Download-Version von MongoDB. Voll funktionsfähig zum Ausprobieren, aber ohne Support und ohne die Enterprise-Sicherheits-Features, die Konzerne benötigen.",
+      "followUpQuestions": [
+        "Was bedeutet Open Source im MongoDB-Kontext?",
+        "Welche Lizenz nutzt Community heute (SSPL)?",
+        "Welche Features fehlen im Vergleich zu Enterprise?"
+      ],
+      "tags": ["layer-1", "community", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-ce-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet die Community Edition?",
+      "answer": "Kostenloser Einstieg für Developer, POCs, kleine Workloads und Lernzwecke. Der Hersteller verdient später über kostenpflichtigen Support und erweiterte Enterprise-Versionen — das senkt die Hürde, die Technologie überhaupt auszuprobieren.",
+      "followUpQuestions": [
+        "Wie ist das Open-Source-Geschäftsmodell von MongoDB aufgebaut?",
+        "Welche Migrationspfade führen Community in Atlas über?",
+        "Wann ist Community für Produktion nicht mehr ausreichend?"
+      ],
+      "tags": ["layer-1", "community", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-ce-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert der Einsatz der Community Edition?",
+      "answer": "Der Entwickler lädt Community lokal oder auf eine eigene VM, startet `mongod` und nutzt die Datenbank ohne Lizenzkosten. Skaliert technisch wie Enterprise (Replica Set, Sharding), aber ohne Enterprise-Support, Kerberos-/LDAP-Integration, Auditing und Queryable Encryption.",
+      "followUpQuestions": [
+        "Welche Security-Features kommen erst mit Enterprise?",
+        "Welche Rolle spielt Community für Schulung und POCs?",
+        "Warum ist Community für regulierte Produktion häufig ungeeignet?"
+      ],
+      "tags": ["layer-1", "community", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-ce-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für Community?",
+      "answer": "Ein Entwickler will am Wochenende eine neue Idee testen. Er lädt MongoDB Community kostenlos herunter, experimentiert — und wenn die Idee fliegt, migriert er später nach Atlas.",
+      "followUpQuestions": [
+        "Wie sieht ein typischer Upgrade-Pfad Community → Atlas aus?",
+        "Welche Migrationswerkzeuge helfen dabei?",
+        "Welche Risiken birgt produktiver Community-Einsatz langfristig?"
+      ],
+      "tags": ["layer-1", "community", "use-case", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-afg-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas for Government?",
+      "answer": "Atlas for Government ist eine abgeschottete Atlas-Variante nur für US-Behörden. Technisch identisch zu Atlas, aber in einer Cloud-Zone mit FedRAMP-Moderate-Zertifizierung — damit öffentliche Auftraggeber rechtlich einkaufen dürfen.",
+      "followUpQuestions": [
+        "Was ist FedRAMP genau?",
+        "Welche Cloud-Provider sind für Atlas for Government verfügbar?",
+        "Worin unterscheidet sich das technische Feature-Set von Standard-Atlas?"
+      ],
+      "tags": ["layer-1", "atlas-government", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-afg-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Atlas for Government?",
+      "answer": "Behörden brauchen einkaufsfähige, zertifizierte Cloud-Dienste. Atlas for Government erlaubt modernes Dokumenten-DB-Erlebnis unter FedRAMP — ohne dass jede Behörde selbst eine Private-Cloud-Variante aufbauen muss.",
+      "followUpQuestions": [
+        "Warum ist FedRAMP für US-Behörden Einkaufspflicht?",
+        "Welche alternativen Compliance-Regime gibt es (z. B. IL4/IL5)?",
+        "Gibt es ähnliche Angebote in der EU?"
+      ],
+      "tags": ["layer-1", "atlas-government", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-afg-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert Atlas for Government?",
+      "answer": "Es ist ein separater Atlas-Mandant in dedizierten US-Government-Cloud-Regionen mit FedRAMP-Moderate-Kontrollen, getrennten Betriebsteams und zusätzlichen Audit-Anforderungen. Kunden nutzen dieselbe API und Query-Sprache wie Commercial Atlas.",
+      "followUpQuestions": [
+        "Welche Cloud-Regionen kommen in Frage (AWS GovCloud, Azure Government)?",
+        "Welche Zugriffsbeschränkungen gelten für Betreiber?",
+        "Welche Datenresidenz-Regeln ergeben sich daraus?"
+      ],
+      "tags": ["layer-1", "atlas-government", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-afg-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für Atlas for Government?",
+      "answer": "Eine US-Bundesbehörde darf nur Cloud-Dienste nutzen, die FedRAMP-zertifiziert sind. Sie baut ihre Bürger-App auf Atlas for Government — compliant und trotzdem modern.",
+      "followUpQuestions": [
+        "Welche typischen Behörden-Apps profitieren davon?",
+        "Wie unterscheidet sich der Beschaffungsprozess vom Commercial Atlas?",
+        "Welche Betriebs-Einschränkungen akzeptieren Kunden dafür?"
+      ],
+      "tags": ["layer-1", "atlas-government", "use-case", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-search-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Search?",
+      "answer": "Atlas Search ist eine Full-Text-Search-Funktion direkt in der Datenbank. Findet nicht nur exakte Treffer, sondern auch Tippfehler, Synonyme und ähnliche Begriffe — wie eine Google-Suche auf den eigenen Daten. Spart eine separate Suchmaschine.",
+      "followUpQuestions": [
+        "Was ist Full-Text-Search im Unterschied zu einfachen DB-Filtern?",
+        "Welche Engine liegt Atlas Search zugrunde?",
+        "Welches Produkt wird dadurch typischerweise ersetzt?"
+      ],
+      "tags": ["layer-2", "atlas-search", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-search-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Atlas Search gegenüber einer separaten Suchmaschine?",
+      "answer": "Ein Index, eine Query-Sprache, keine Sync-Pipeline. Statt Daten regelmäßig nach Elasticsearch zu replizieren, sucht Atlas Search direkt auf der MongoDB-Collection. Das spart Infrastruktur, Sync-Fehler und Entwicklerzeit.",
+      "followUpQuestions": [
+        "Welche Kosten-/Komplexitätsvorteile entstehen konkret?",
+        "Wann könnte eine dedizierte Suchmaschine trotzdem nötig sein?",
+        "Welches Konsistenzverhalten hat Atlas Search im Vergleich zu Elastic?"
+      ],
+      "tags": ["layer-2", "atlas-search", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-vector-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Vector Search?",
+      "answer": "Atlas Vector Search sucht nach Bedeutung statt nach Stichworten. Texte, Bilder oder Audio werden in Zahlenvektoren (Embeddings) übersetzt; ähnliche Inhalte liegen geometrisch nahe beieinander. Das ist die Technologie, die AI-Chatbots brauchen, um passende Antworten aus Firmendaten zu finden.",
+      "followUpQuestions": [
+        "Was sind Embeddings, und wer erzeugt sie?",
+        "Was ist RAG (Retrieval Augmented Generation)?",
+        "Welche Rolle spielt semantische Ähnlichkeit bei der Ranking-Logik?"
+      ],
+      "tags": ["layer-2", "vector-search", "ai", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-vector-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Vector Search im gleichen Stack?",
+      "answer": "Embeddings liegen neben den operativen Daten. RAG-Pipelines laufen ohne zweite Vektor-DB (Pinecone, Weaviate) — der Kunde braucht keine zweite Datenhaltung, keine zusätzliche Synchronisation und keine Hybrid-Retrieval-Komplexität.",
+      "followUpQuestions": [
+        "Wann würde man trotzdem eine dedizierte Vektor-DB wählen?",
+        "Wie sieht Hybrid Search (Vector + BM25) bei MongoDB aus?",
+        "Welche Embedding-Modelle kombiniert MongoDB typischerweise damit?"
+      ],
+      "tags": ["layer-2", "vector-search", "ai", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-stream-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist MongoDB Stream Processing?",
+      "answer": "Stream Processing verarbeitet Ereignisse in Echtzeit, während sie passieren. Beispiel: eine Kreditkarten-Transaktion wird im Moment des Ablaufs auf Betrug geprüft. Nutzt dasselbe Aggregation Framework wie die Datenbank, was Entwicklerzeit spart.",
+      "followUpQuestions": [
+        "Wie unterscheidet sich Stream Processing von Batch-Verarbeitung?",
+        "Welche Alternativen gibt es (Kafka Streams, Flink)?",
+        "Welche typischen Stream-Operatoren werden angewendet?"
+      ],
+      "tags": ["layer-2", "stream-processing", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-stream-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert hat Stream Processing im MongoDB-Stack?",
+      "answer": "Dieselbe Aggregation-Pipeline wie für reguläre DB-Queries. Entwickler lernen keine zweite DSL, und die Latenz zwischen Event-Eintreffen und Reaktion sinkt, weil keine separate Streaming-Plattform dazwischen hängt.",
+      "followUpQuestions": [
+        "Welche Integrationen gibt es zu Kafka und Kinesis?",
+        "Wie sieht eine Windowing-Aggregation im Stream-Kontext aus?",
+        "Welche Use Cases sind echte Streaming-Fälle, welche eher Batch?"
+      ],
+      "tags": ["layer-2", "stream-processing", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-federation-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Data Federation?",
+      "answer": "Data Federation ist eine Technologie, die mehrere getrennte Datenquellen — MongoDB, S3 bei AWS, Blob Storage bei Azure — als eine einzige Datenquelle erscheinen lässt. Eine einzige Query holt die Antworten aus den richtigen Systemen zusammen, ohne Daten umkopieren zu müssen.",
+      "followUpQuestions": [
+        "Welche Quellen unterstützt Data Federation heute?",
+        "Wie sieht ein konkretes Query-Beispiel aus?",
+        "Welche Performance-Grenzen existieren gegenüber lokalen Queries?"
+      ],
+      "tags": ["layer-2", "data-federation", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-federation-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert hat Data Federation im gleichen Stack?",
+      "answer": "Query über Atlas + S3 + Blob Storage mit einer einzigen MongoDB Query Language. Kunden sparen ETL-Pipelines und Data-Warehouse-Loads für Ad-hoc-Analysen, weil kalte Daten im Objekt-Storage direkt abgefragt werden.",
+      "followUpQuestions": [
+        "Wann ist ETL in ein Data Warehouse trotzdem sinnvoller?",
+        "Welche Rolle spielt Parquet-Format bei Data Federation?",
+        "Wie wirkt sich Federation auf Kosten aus?"
+      ],
+      "tags": ["layer-2", "data-federation", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-archive-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Online Archive?",
+      "answer": "Online Archive verschiebt alte Daten automatisch auf günstigeren Speicher, damit die teure Hauptdatenbank frei bleibt. Die Daten sind trotzdem noch abfragbar — wie ein Kellerarchiv, in das man jederzeit reinschauen kann.",
+      "followUpQuestions": [
+        "Nach welchen Kriterien werden Daten archiviert (Zeit, Regel)?",
+        "Welchen Speicher nutzt Online Archive im Hintergrund?",
+        "Wie wirkt sich Archivierung auf Query-Latenz aus?"
+      ],
+      "tags": ["layer-2", "online-archive", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-archive-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert hat Online Archive für Kostenoptimierung?",
+      "answer": "Automatisches Tiering: heiße Daten bleiben im schnellen Cluster-Storage, kalte Daten landen im günstigen Objekt-Storage — aber unter demselben System und derselben Query. Das senkt Kosten für Compliance-pflichtige Langzeit-Daten spürbar.",
+      "followUpQuestions": [
+        "Wie unterscheidet sich Online Archive von Data Federation?",
+        "Welche typischen Compliance-Fälle treiben Long-term-Archiving?",
+        "Welche Restore-Szenarien sind möglich?"
+      ],
+      "tags": ["layer-2", "online-archive", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-charts-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Charts?",
+      "answer": "Atlas Charts erstellt Diagramme und Dashboards direkt aus MongoDB-Daten — ohne dass der Kunde Tableau oder Power BI installieren muss. Gut für einfache Reports und Team-Dashboards.",
+      "followUpQuestions": [
+        "Worin liegen die Grenzen ggü. Tableau/Power BI?",
+        "Wie werden Dashboards geteilt und eingebettet?",
+        "Welche Diagrammtypen sind typisch?"
+      ],
+      "tags": ["layer-2", "charts", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-charts-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Atlas Charts?",
+      "answer": "BI direkt auf dem Document-Modell, ohne ETL in ein separates Data Warehouse. Teams sehen operative Kennzahlen in quasi-Echtzeit, ohne parallelen BI-Stack aufbauen zu müssen.",
+      "followUpQuestions": [
+        "Wann reicht Charts, wann braucht es ein echtes Warehouse?",
+        "Welchen Nutzerkreis adressiert Charts typischerweise?",
+        "Wie spielt Charts mit Atlas Search oder Vector Search zusammen?"
+      ],
+      "tags": ["layer-2", "charts", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-appservices-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was sind Atlas App Services?",
+      "answer": "App Services sind ein kleines Anwendungs-Backend, das bei Atlas mitgeliefert wird (Backend-as-a-Service). Der Kunde kann Functions, Triggers und eine Data API nutzen, um Geschäftslogik abzulegen, ohne einen eigenen Server zu betreiben.",
+      "followUpQuestions": [
+        "Was genau leisten Functions, Triggers und Data API?",
+        "Wie unterscheidet sich BaaS von klassischen API-Gateways?",
+        "Welche Nutzer-Authentifizierungs-Optionen gibt es?"
+      ],
+      "tags": ["layer-3", "app-services", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-appservices-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bieten App Services einem Mittelstands-Team?",
+      "answer": "Serverless Backend ohne eigene VMs: keine Container-Orchestrierung, kein API-Gateway, keine Patch-Routinen. Das Team baut Geschäftslogik und überlässt Skalierung, Authentifizierung und Operations Atlas.",
+      "followUpQuestions": [
+        "Welche Grenzen hat BaaS bei komplexer Geschäftslogik?",
+        "Welche Vendor-Lock-in-Überlegungen entstehen?",
+        "Wann wechselt man zu einem eigenen Backend?"
+      ],
+      "tags": ["layer-3", "app-services", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-appservices-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktionieren App Services auf hohem Level?",
+      "answer": "Der Entwickler hinterlegt Functions (JavaScript), definiert Triggers auf DB-Events oder Zeitplänen und exponiert die Data API als REST-Endpunkte. Atlas übernimmt Deployment, Skalierung und Authentifizierung — der Kunde zahlt pro Ausführung und Datenzugriff.",
+      "followUpQuestions": [
+        "Was ist ein DB-Trigger und wofür wird er genutzt?",
+        "Welche Auth-Provider werden unterstützt (JWT, Email/Pass, Anonym)?",
+        "Wie sieht die Deployment-Story (CI/CD) aus?"
+      ],
+      "tags": ["layer-3", "app-services", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-appservices-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für App Services?",
+      "answer": "Ein Mittelstands-Team baut eine interne Lagerverwaltung. Statt einen Server zu mieten, legen sie die Logik als Atlas-Functions an — die automatisch eine Bestellmail auslösen, wenn ein Artikel unter die Mindestmenge fällt.",
+      "followUpQuestions": [
+        "Welche Trigger-Typen lösen diesen Mail-Flow aus?",
+        "Wie skaliert die Lösung, wenn 1.000 Lager dazukommen?",
+        "Wie passt Device Sync in dieses Szenario?"
+      ],
+      "tags": ["layer-3", "app-services", "use-case", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-sync-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Device Sync (Realm)?",
+      "answer": "Device Sync hält Mobile-Apps und die zentrale Datenbank automatisch synchron. Funktioniert auch offline — Änderungen werden lokal gespeichert und später ohne Datenverlust nachgezogen. Stammt aus der Realm-Übernahme 2019.",
+      "followUpQuestions": [
+        "Wie werden Konflikte bei gleichzeitigen Änderungen gelöst?",
+        "Welche Plattformen werden unterstützt (iOS, Android, Web)?",
+        "Was ist die Realm-DB im Vergleich zu SQLite?"
+      ],
+      "tags": ["layer-3", "device-sync", "mobile", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-sync-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Device Sync für Mobile/IoT?",
+      "answer": "Offline-fähige Apps ohne selbstgebaute Sync-Schicht. Entwickler sparen sich Konflikt-Handling, Retry-Queues und Delta-Sync — das alles steckt in Realm + App Services. Kritisch für Außendienst, Logistik und IoT.",
+      "followUpQuestions": [
+        "Wie sieht der Delta-Sync technisch aus?",
+        "Welche Kosten-/Skalierungsgrenzen gibt es?",
+        "Wann wählt man lieber eine eigene Offline-Queue?"
+      ],
+      "tags": ["layer-3", "device-sync", "mobile", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-sync-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert Device Sync auf hohem Level?",
+      "answer": "Die App speichert lokal in der Realm-DB. Ein Sync-Client gleicht Änderungen beidseitig mit Atlas ab, sobald Konnektivität vorhanden ist; Konflikte werden deterministisch aufgelöst, sodass alle Geräte konvergieren.",
+      "followUpQuestions": [
+        "Welche Rolle spielt Atlas als Single Source of Truth?",
+        "Welche Authentifizierung steckt hinter dem Sync-Handshake?",
+        "Wie sieht das Schema-Mapping zwischen Realm-Objekten und MongoDB-Dokumenten aus?"
+      ],
+      "tags": ["layer-3", "device-sync", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-sync-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für Device Sync?",
+      "answer": "Ein Außendienstler einer Versicherung nimmt Schadensmeldungen per Tablet auf, während er in einem Funkloch steht. Die Einträge gehen später automatisch zur Zentrale — nichts geht verloren.",
+      "followUpQuestions": [
+        "Welche weiteren Branchen-Beispiele sind naheliegend (Gesundheit, Logistik)?",
+        "Wie unterscheidet sich dieser Use Case vom Edge Server?",
+        "Welche Compliance-Themen (DSGVO) sind dabei zu beachten?"
+      ],
+      "tags": ["layer-3", "device-sync", "use-case", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-edge-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Atlas Edge Server?",
+      "answer": "Edge Server ist eine lokale MongoDB-Installation direkt vor Ort — in einer Filiale, Fabrik oder auf einem Schiff. Arbeitet weiter, auch wenn die Internet-Verbindung unterbrochen ist, und gleicht sich später mit der Zentrale ab.",
+      "followUpQuestions": [
+        "Was ist Edge Computing in diesem Kontext?",
+        "Wie unterscheidet sich Edge Server von Device Sync?",
+        "Welche Hardware-Anforderungen hat ein Edge-Node?"
+      ],
+      "tags": ["layer-3", "edge", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-edge-mehrwert",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Mehrwert bietet Edge Server für Filialketten?",
+      "answer": "Latenz sinkt, weil Lese-/Schreiboperationen lokal laufen. Offline-Betrieb bleibt möglich, und später synchronisiert Edge mit Atlas. Kassensysteme, Fabrik-Steuerung und Schiffs-Logistik laufen auch bei Connectivity-Ausfall weiter.",
+      "followUpQuestions": [
+        "Welche Write-Konflikte können auftreten, und wie werden sie gelöst?",
+        "Wie sieht das Betriebsmodell aus (Appliance, VM, Container)?",
+        "Welche Sicherheitsanforderungen gelten für Edge-Standorte?"
+      ],
+      "tags": ["layer-3", "edge", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-edge-wie",
+      "topicId": "topic-1-mongodb",
+      "question": "Wie funktioniert Edge Server auf hohem Level?",
+      "answer": "Edge Server ist ein lokaler MongoDB-Node (oder kleiner Cluster), der mit einem zentralen Atlas-Cluster sync-basiert gekoppelt ist. Lokale Apps lesen/schreiben lokal; ein Sync-Prozess gleicht Änderungen bei Verbindung nach oben/unten ab.",
+      "followUpQuestions": [
+        "Wie überschneidet sich Edge Server mit Device Sync?",
+        "Welche Konsistenzgarantien gibt es in getrennten Zeiträumen?",
+        "Welche Deployment-Optionen existieren (Kubernetes, bare metal)?"
+      ],
+      "tags": ["layer-3", "edge", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-edge-usecase",
+      "topicId": "topic-1-mongodb",
+      "question": "Welchen Use Case gibt es für Edge Server?",
+      "answer": "Eine Supermarktkette mit 2.000 Filialen. Jede Filiale hat einen Edge Server, damit die Kasse auch bei Internet-Ausfall weiterläuft. Abends synchronisieren sich die Transaktionen automatisch mit der Zentrale.",
+      "followUpQuestions": [
+        "Welche Daten bleiben lokal, welche müssen global sein?",
+        "Welche Rolle spielt die zentrale Inventar-Konsolidierung?",
+        "Welche weiteren Branchen passen (Fertigung, Öl/Gas, Luftfahrt)?"
+      ],
+      "tags": ["layer-3", "edge", "use-case", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-compass-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist MongoDB Compass?",
+      "answer": "Compass ist die offizielle grafische Oberfläche (GUI) für MongoDB. Entwickler klicken sich visuell durch ihre Daten — so ähnlich wie Excel für Tabellen — zeigen Inhalte, bauen Queries und bekommen Index-Vorschläge.",
+      "followUpQuestions": [
+        "Wie unterscheidet sich Compass von mongosh?",
+        "Welche Rolle spielen Index-Empfehlungen in Compass?",
+        "Wann nutzt man Compass im Tagesgeschäft?"
+      ],
+      "tags": ["layer-4", "compass", "tool", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-compass-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt Compass für Entwickler-Produktivität?",
+      "answer": "Compass beschleunigt Schema-Erkundung, Query-Entwurf und Performance-Tuning. Entwickler verstehen Daten schneller und iterieren Queries, ohne jede Zeile in der Shell tippen zu müssen — der Einstieg in neue Collections wird deutlich einfacher.",
+      "followUpQuestions": [
+        "Welche Performance-Insights liefert Compass?",
+        "Wie spielt Compass mit Enterprise-Features (Auditing) zusammen?",
+        "Welche GUI-Alternativen gibt es (Studio 3T)?"
+      ],
+      "tags": ["layer-4", "compass", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-mongosh-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist mongosh?",
+      "answer": "mongosh ist die moderne JavaScript-basierte Shell von MongoDB. Entwickler führen Queries, Admin-Befehle und Scripts direkt aus — die Kommandozentrale der Datenbank für Testing, Debugging und Automatisierung.",
+      "followUpQuestions": [
+        "Warum löst mongosh die alte `mongo`-Shell ab?",
+        "Welche Scripting-Möglichkeiten bietet sie?",
+        "Wie spielt mongosh mit Atlas CLI zusammen?"
+      ],
+      "tags": ["layer-4", "mongosh", "tool", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-mongosh-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt mongosh im Operations-Alltag?",
+      "answer": "mongosh ist das Go-to-Werkzeug für Ops-Tasks: Replica-Set-Status prüfen, Indizes anlegen, einmalige Fixes, Skripte gegen Test-Cluster. Es ergänzt Compass als textbasiertes Schnittstellenwerkzeug mit voller Scripting-Macht.",
+      "followUpQuestions": [
+        "Welche Admin-Befehle sind typisch (rs.status, sh.addShard)?",
+        "Welche Security-Hinweise gelten bei Shell-Zugriffen?",
+        "Wie integriert sich mongosh in CI-Pipelines?"
+      ],
+      "tags": ["layer-4", "mongosh", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-cli-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was sind Atlas CLI und Atlas Admin API?",
+      "answer": "Atlas CLI und Admin API erlauben Platform-Teams, Atlas vollautomatisch zu steuern: Cluster anlegen, Backups konfigurieren, Nutzer managen — ohne manuelles Klicken. Pflicht für Firmen, die Infrastruktur als Code verwalten.",
+      "followUpQuestions": [
+        "Was bedeutet Infrastructure-as-Code genau?",
+        "Wie passen Terraform-Provider dazu?",
+        "Welche Operationen sind nur über API, nicht über UI möglich?"
+      ],
+      "tags": ["layer-4", "cli", "iac", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-cli-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielen CLI/API in CI/CD und Compliance?",
+      "answer": "Sie sind die Grundlage, um Atlas-Änderungen versioniert, reviewbar und wiederholbar zu machen. In regulierten Umgebungen ist jede Produktionsänderung über Code-Review/PR-Flow auditierbar — manuelle Klicks sind nicht akzeptabel.",
+      "followUpQuestions": [
+        "Wie sieht ein typischer Terraform-Workflow für Atlas aus?",
+        "Welche Rollen/Permissions benötigen Automation-Accounts?",
+        "Wie lässt sich Drift zwischen IaC und Atlas entdecken?"
+      ],
+      "tags": ["layer-4", "cli", "iac", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-relmig-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist der Relational Migrator?",
+      "answer": "Ein Wizard, der hilft, alte SQL-Datenbanken (Oracle, SQL Server, Postgres) nach MongoDB umzuziehen. Schlägt automatisch vor, wie Tabellen als Dokumente modelliert werden, und macht aus einem Jahresprojekt oft ein Wochenprojekt.",
+      "followUpQuestions": [
+        "Wie werden Foreign Keys in Embed- oder Reference-Beziehungen überführt?",
+        "Welche SQL-Dialekte werden unterstützt?",
+        "Wie sieht der Cut-over-Prozess aus?"
+      ],
+      "tags": ["layer-4", "migrator", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-relmig-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt der Relational Migrator im Sales-Zyklus?",
+      "answer": "Er senkt die Hemmschwelle für Legacy-Modernisierungen: Kunden sehen konkret, wie ihre SQL-Daten als Dokumente aussehen, und können Risiko/Aufwand bewerten. Das beschleunigt Entscheidungen und reduziert POC-Zyklen.",
+      "followUpQuestions": [
+        "Welche Anti-Patterns im Modell-Mapping gibt es typischerweise?",
+        "Wie ergänzt mongosync die Migration?",
+        "Welche Datenvolumina sind mit dem Wizard sinnvoll?"
+      ],
+      "tags": ["layer-4", "migrator", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-mongosync-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist Cluster-to-Cluster Sync (mongosync)?",
+      "answer": "mongosync kopiert MongoDB-Daten laufend von einem Cluster an einen anderen — typisch vom eigenen Rechenzentrum in Atlas. Läuft im Hintergrund, bis beide Seiten synchron sind, ohne spürbare Downtime für den Kunden.",
+      "followUpQuestions": [
+        "Wie funktioniert Near-Zero-Downtime-Migration technisch?",
+        "Wann ist ein Cut-over möglich?",
+        "Welche Rolle spielen Resume-Token?"
+      ],
+      "tags": ["layer-4", "mongosync", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-mongosync-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt mongosync in Cloud-Migrationen?",
+      "answer": "Es ermöglicht das Wandern bestehender Produktions-Cluster (z. B. von on-prem/Enterprise nach Atlas) ohne Ausfallzeit. Kunden migrieren, ohne ihre Anwendungen anzupassen — Source und Target bleiben konsistent, bis der Cut-over erfolgt.",
+      "followUpQuestions": [
+        "Wie grenzt sich mongosync von mongodump/mongorestore ab?",
+        "Welche Netzwerk-Anforderungen gibt es zwischen den Clustern?",
+        "Wie läuft das Rollback bei Problemen?"
+      ],
+      "tags": ["layer-4", "mongosync", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-biconn-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist der BI Connector?",
+      "answer": "Der BI Connector lässt MongoDB aus Sicht von Tools wie Tableau oder Power BI wie eine klassische SQL-Datenbank aussehen. Report-Teams, die nur SQL kennen, können auf MongoDB-Daten zugreifen, ohne umzulernen.",
+      "followUpQuestions": [
+        "Welche Protokolle sprechen BI-Tools (ODBC/JDBC)?",
+        "Wie wirkt sich die SQL-Übersetzung auf Performance aus?",
+        "Wann ist Atlas SQL eine Alternative?"
+      ],
+      "tags": ["layer-4", "bi-connector", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-biconn-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt der BI Connector in einem bestehenden BI-Stack?",
+      "answer": "Er überbrückt die Kompetenz-Lücke zwischen klassischen Analytics-Teams und modernen Document-Daten: SQL-Skills bleiben nutzbar, MongoDB-Daten werden verfügbar — ohne doppelte Datenhaltung.",
+      "followUpQuestions": [
+        "Was ist Atlas SQL Interface im Unterschied zum BI Connector?",
+        "Welche Grenzen hat SQL-over-Documents (Nested Fields, Arrays)?",
+        "Wie positioniert sich der Connector gegenüber reinen ETL-Ansätzen?"
+      ],
+      "tags": ["layer-4", "bi-connector", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-connect-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was sind die Kafka- und Spark-Connectors?",
+      "answer": "Vorgefertigte Brücken, die MongoDB mit zwei weit verbreiteten Plattformen verbinden: Kafka (Echtzeit-Datenströme) und Spark (verteilte Big-Data-Analysen). So fließen Daten nahtlos zwischen diesen Systemen und MongoDB.",
+      "followUpQuestions": [
+        "Welche Rolle spielt Change Streams bei diesen Connectors?",
+        "Welche Modi (Source/Sink) unterstützt der Kafka-Connector?",
+        "Wann nutzt man Spark statt Aggregation Framework?"
+      ],
+      "tags": ["layer-4", "connectors", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-connect-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielen Kafka-/Spark-Connectors in Datenplattformen?",
+      "answer": "Sie machen MongoDB zu einem natürlichen Baustein in Data-Engineering-Stacks: Events aus Kafka landen in Collections, Spark-Jobs lesen große Collections für ML oder Reporting. Ohne dedizierte ETL-Scripts.",
+      "followUpQuestions": [
+        "Wie verhält sich der Kafka-Sink bei Schema-Änderungen?",
+        "Welche Parallelisierung leistet der Spark-Connector?",
+        "Wie grenzt sich Stream Processing hiervon ab?"
+      ],
+      "tags": ["layer-4", "connectors", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-k8s-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist der MongoDB Kubernetes Operator?",
+      "answer": "Der Operator erweitert Kubernetes um das Wissen, wie MongoDB zu betreiben ist. Er richtet Replica Sets und Sharded Cluster deklarativ ein, kümmert sich um Upgrades und hält sie am Laufen — wenn der Kunde Kubernetes als Plattform nutzt.",
+      "followUpQuestions": [
+        "Was ist ein Kubernetes-Operator-Pattern?",
+        "Welche Varianten gibt es (Community Kubernetes Operator, Enterprise Operator)?",
+        "Wie unterscheidet sich Operator-Betrieb von Atlas?"
+      ],
+      "tags": ["layer-4", "kubernetes", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-k8s-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt der K8s Operator in Enterprise-Plattformen?",
+      "answer": "Er ist Teil der Plattform-Strategie großer Kunden, die alles in K8s laufen lassen. Statt MongoDB als Fremdkörper zu behandeln, wird sie per CRDs deklariert — GitOps-fähig und in bestehende Observability eingebettet.",
+      "followUpQuestions": [
+        "Wie integriert sich der Operator mit GitOps (ArgoCD, Flux)?",
+        "Welche Sicherheitsmechanismen (Pod Security, Network Policies) sind Pflicht?",
+        "Wann ist trotzdem Atlas die bessere Wahl?"
+      ],
+      "tags": ["layer-4", "kubernetes", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-opsman-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was sind Ops Manager und Cloud Manager?",
+      "answer": "Management-Plane für Self-Managed-Kunden (also nicht Atlas). Sie zeigen Gesundheit, machen Backups und wickeln Updates ab. Ops Manager hostet der Kunde selbst, Cloud Manager kommt als gehosteter Dienst.",
+      "followUpQuestions": [
+        "Worin unterscheiden sich die beiden Varianten konkret?",
+        "Welche Rolle spielen sie für Enterprise Advanced?",
+        "Welche Alerting-Integrationen (PagerDuty, Slack) gibt es?"
+      ],
+      "tags": ["layer-4", "ops-manager", "tool", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-opsman-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielen Ops/Cloud Manager für Self-Managed-Kunden?",
+      "answer": "Ohne sie müssten Kunden Monitoring, Backup-Scheduling und Rolling Upgrades selbst skripten. Mit Ops/Cloud Manager erhalten sie eine Standard-Plane, die vieles automatisiert und den Betrieb nahe an Atlas-Niveau hebt.",
+      "followUpQuestions": [
+        "Wie sieht Backup-Strategie in Ops Manager aus?",
+        "Welche Rolle spielt Automation Agent?",
+        "Wann argumentiert man trotzdem für Atlas statt Ops Manager?"
+      ],
+      "tags": ["layer-4", "ops-manager", "tool", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-univ-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist MongoDB University?",
+      "answer": "Ein kostenloses Online-Schulungsportal mit offiziellen Zertifikaten. Lernpfade für Entwickler, Admins und Architekten. Für den CSM entscheidend: je besser das Kundenteam ausgebildet ist, desto schneller wächst die Nutzung.",
+      "followUpQuestions": [
+        "Welche Zertifizierungen gibt es heute (Associate Developer, DBA)?",
+        "Wie lange dauern typische Lernpfade?",
+        "Wie lässt sich University in CSM-Success-Plans einbetten?"
+      ],
+      "tags": ["layer-4", "university", "enablement", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t1-univ-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt University für Customer Success?",
+      "answer": "Enablement-Programme beschleunigen Adoption. Je breiter die Skills im Kundenteam, desto selbstständiger baut es neue Use Cases — was Retention und Expansion treibt. Zertifikate schaffen Prestige auf Kundenseite und Vertrauen in Entscheidungen.",
+      "followUpQuestions": [
+        "Wie misst der CSM den Impact von Enablement?",
+        "Welche Formate (live, self-paced) funktionieren für welchen Kundenstil?",
+        "Welche Rolle spielen MongoDB Professional Services ergänzend?"
+      ],
+      "tags": ["layer-4", "university", "enablement", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-maap-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was ist das MongoDB AI Applications Program (MAAP)?",
+      "answer": "MAAP ist eine Partnerschaft von MongoDB mit großen AI-Anbietern (Amazon Bedrock, Azure OpenAI, Google Vertex, Cohere) und Beratungshäusern (Accenture, Capgemini, McKinsey). Wenn ein Kunde ein AI-Projekt plant, stehen diese Partner mit MongoDB als Datenbasis bereit.",
+      "followUpQuestions": [
+        "Welche konkreten AI-Anbieter sind beteiligt?",
+        "Wie unterscheidet sich MAAP von normalen Technologie-Partnerschaften?",
+        "Welche Rolle spielt Vector Search im MAAP-Angebot?"
+      ],
+      "tags": ["layer-5", "maap", "ai", "gtm", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-maap-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielt MAAP in der Positionierung von MongoDB?",
+      "answer": "MAAP positioniert MongoDB als Standard-Datenbasis für AI-Anwendungen, indem es einen vorkonfigurierten Partner-Stack anbietet. Kunden reduzieren Integrationsrisiken und starten AI-Projekte schneller — mit MongoDB als zentraler Datenplattform.",
+      "followUpQuestions": [
+        "Wie grenzt sich MAAP gegenüber reinen Cloud-Anbieter-AI-Stacks ab?",
+        "Welche Referenzarchitekturen existieren?",
+        "Welche Rolle spielen SIs wie Accenture im MAAP-Prozess?"
+      ],
+      "tags": ["layer-5", "maap", "gtm", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t1-market-was",
+      "topicId": "topic-1-mongodb",
+      "question": "Was sind die MongoDB Marketplace-Integrationen?",
+      "answer": "Kunden können MongoDB direkt über die Cloud-Marktplätze von AWS, Azure und Google einkaufen und dabei ihre vorhandenen Cloud-Budgets (Committed Spend) anrechnen. Das beschleunigt den Einkauf, weil keine neue Lieferanten-Freigabe nötig ist.",
+      "followUpQuestions": [
+        "Was ist Committed Spend / EDP bei AWS?",
+        "Welche Vertragsmodelle werden unterstützt (Private Offer)?",
+        "Welche Rolle spielt das für den CSM-Zyklus?"
+      ],
+      "tags": ["layer-5", "marketplace", "gtm", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t1-market-rolle",
+      "topicId": "topic-1-mongodb",
+      "question": "Welche Rolle spielen Marketplaces im Procurement?",
+      "answer": "Sie wirken als beschleunigter Einkaufskanal: bestehende Cloud-Verträge werden angerechnet, Rechnungsstellung läuft über den Cloud-Provider, und Vendor-Onboarding entfällt oft. Für große Kunden reduziert das Zeit bis zum Abschluss erheblich.",
+      "followUpQuestions": [
+        "Welche Atlas-Limits gibt es bei Marketplace-Deals?",
+        "Wie wirkt sich das auf Rabatt- und Commit-Strukturen aus?",
+        "Welche Rolle spielt der Cloud-Provider im Support-Flow?"
+      ],
+      "tags": ["layer-5", "marketplace", "gtm", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    }
+  ]
+}

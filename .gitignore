@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# build output
+dist
+dist-ssr
+.vite
+
+# environment
+.env
+.env.local
+.env.*.local
+
+# editor / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.log
+
+# misc
+*.local
+coverage
+
+# claude / agent harness
+.claude
+
+# typescript build info
+tsconfig.tsbuildinfo
+*.tsbuildinfo

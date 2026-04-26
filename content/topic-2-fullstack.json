@@ -1,0 +1,277 @@
+{
+  "topic": {
+    "id": "topic-2-fullstack",
+    "name": "Full-Stack Application Design",
+    "description": "Frontend (HTML/CSS/JS), Backend-Sprachen, MEAN vs. MERN und der Banküberweisungs-Fluss als End-to-End-Beispiel.",
+    "status": "active",
+    "ref": "FS"
+  },
+  "cards": [
+    {
+      "id": "t2-frontend-was",
+      "topicId": "topic-2-fullstack",
+      "question": "Was ist das Frontend im Full-Stack-Kontext?",
+      "answer": "Das Frontend ist alles, was der Nutzer direkt im Browser sieht und womit er interagiert. Die drei Grundbausteine sind HTML (Struktur), CSS (Design) und JavaScript (Interaktivität). Sie arbeiten eng zusammen, haben aber klar abgegrenzte Rollen.",
+      "followUpQuestions": [
+        "Welche Rolle hat HTML im Vergleich zu CSS?",
+        "Warum ist JavaScript die einzige 'echte' Programmiersprache der drei?",
+        "Welche Rolle spielen Frameworks wie React oder Angular?"
+      ],
+      "tags": ["frontend", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-html-rolle",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt HTML in einer Webanwendung?",
+      "answer": "HTML (HyperText Markup Language) ist das Skelett der Seite. Es legt fest, welche Elemente vorhanden sind — Überschriften, Absätze, Bilder, Formulare, Links — und gibt dem Browser eine hierarchische Struktur vor, das DOM (Document Object Model). Ohne HTML gibt es nichts zum Anzeigen.",
+      "followUpQuestions": [
+        "Was ist das DOM konkret?",
+        "Wie greift JavaScript auf HTML-Elemente zu?",
+        "Welche semantischen HTML-Elemente sind wichtig für Barrierefreiheit?"
+      ],
+      "tags": ["frontend", "html", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-css-rolle",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt CSS in einer Webanwendung?",
+      "answer": "CSS (Cascading Style Sheets) bestimmt, wie HTML-Elemente dargestellt werden: Farben, Schriftarten, Abstände, Layouts, Animationen und Responsiveness (Anpassung an Smartphone/Desktop). Im Full-Stack-Kontext ist CSS zentral, damit die Oberfläche ansprechend und auf allen Geräten bedienbar ist.",
+      "followUpQuestions": [
+        "Was bedeutet Responsive Design genau?",
+        "Wie funktioniert die Kaskade bei widersprüchlichen Stilen?",
+        "Welche Rolle spielen CSS-Frameworks wie Tailwind?"
+      ],
+      "tags": ["frontend", "css", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-js-rolle",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt JavaScript in einer Webanwendung?",
+      "answer": "JavaScript ist die einzige echte Programmiersprache der drei Frontend-Bausteine und verleiht der Seite Dynamik und Logik. Sie reagiert auf Nutzer-Events (Klicks, Formulare), tauscht mit dem Backend über APIs Daten aus und aktualisiert die Oberfläche, ohne die Seite neu zu laden. Frameworks wie React oder Angular bauen vollständig auf JavaScript auf.",
+      "followUpQuestions": [
+        "Was ist eine API im Frontend-Kontext?",
+        "Wie unterscheiden sich React und Angular grob?",
+        "Warum sind JS-Komponenten wiederverwendbar?"
+      ],
+      "tags": ["frontend", "javascript", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-backend-was",
+      "topicId": "topic-2-fullstack",
+      "question": "Was ist das Backend einer Webanwendung?",
+      "answer": "Das Backend ist die unsichtbare Seite — Server, Geschäftslogik und Datenbank. Es verarbeitet Anfragen vom Frontend, führt Berechnungen aus, kommuniziert mit der Datenbank und schickt Ergebnisse zurück. Hier werden serverseitige Logik, RESTful APIs und Datenabruf/-manipulation gehandhabt.",
+      "followUpQuestions": [
+        "Was ist eine RESTful API?",
+        "Warum ist Validierung im Backend wichtiger als im Frontend?",
+        "Wie verhalten sich Backend und Datenbank zueinander?"
+      ],
+      "tags": ["backend", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-python-django",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielen Python und Django im Backend?",
+      "answer": "Python ist eine der beliebtesten serverseitigen Sprachen, bekannt für klare, lesbare Syntax und Vielseitigkeit — von einfachen Skripten bis zu komplexen Backend-Systemen. Django ist ein 'batteries-included'-Framework auf Python-Basis mit Nutzer-Authentifizierung, ORM und Admin-Panel. Analogie: Python ist der Motor, Django das fertige Auto drumherum.",
+      "followUpQuestions": [
+        "Was ist ein ORM im Kontext von Django?",
+        "Für welche Projektgrößen eignet sich Django besonders?",
+        "Welches Framework-Äquivalent hat Node.js (Express)?"
+      ],
+      "tags": ["backend", "python", "django", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-node",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt Node.js im Backend?",
+      "answer": "Node.js bringt JavaScript auf den Server und erlaubt Full-Stack-Entwicklung mit einer einzigen Sprache. Es ist sehr performant bei vielen gleichzeitigen Verbindungen (Chats, Echtzeit-Apps), weil es auf einem nicht-blockierenden, ereignisgesteuerten Modell basiert.",
+      "followUpQuestions": [
+        "Was bedeutet 'nicht-blockierend / event-driven' konkret?",
+        "Wann ist Node.js weniger ideal (CPU-intensive Tasks)?",
+        "Welche Rolle hat Express.js in typischen Node-Projekten?"
+      ],
+      "tags": ["backend", "nodejs", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-java",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt Java im Backend?",
+      "answer": "Java ist eine der ältesten, bewährtesten Backend-Sprachen, vor allem in großen Unternehmen. Stark typisiert, was Code zuverlässiger und wartbarer macht. Typische Einsatzfelder: Banken, Versicherungen, große E-Commerce-Plattformen. Bekannte Frameworks sind Spring und Spring Boot.",
+      "followUpQuestions": [
+        "Was bedeutet 'stark typisiert' in der Praxis?",
+        "Warum ist Spring Boot so verbreitet in Enterprise-Projekten?",
+        "Wo liegen typische Grenzen von Java-Backends?"
+      ],
+      "tags": ["backend", "java", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-php",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Rolle spielt PHP im Backend?",
+      "answer": "PHP ist eine der ältesten Sprachen speziell für Webentwicklung. Ein großer Teil des Internets läuft auf PHP — prominentes Beispiel: WordPress. PHP läuft serverseitig und erzeugt HTML. Heute wird es häufig mit dem Framework Laravel kombiniert.",
+      "followUpQuestions": [
+        "Warum dominiert PHP im CMS-Bereich (WordPress)?",
+        "Welche Rolle spielt Laravel für moderne PHP-Projekte?",
+        "Wann würdest du PHP gegenüber Node oder Python bevorzugen?"
+      ],
+      "tags": ["backend", "php", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-mean-mern",
+      "topicId": "topic-2-fullstack",
+      "question": "Was sind MEAN- und MERN-Stack?",
+      "answer": "MEAN = MongoDB, Express.js, Angular, Node.js. MERN = MongoDB, Express.js, React, Node.js. Beide Stacks nutzen MongoDB als Datenbank und Node/Express als Backend; Unterschied ist das Frontend-Framework (Angular vs. React).",
+      "followUpQuestions": [
+        "Welcher Stack ist heute populärer und warum?",
+        "Wann würde man Angular statt React wählen?",
+        "Welches 'E' steht bei MEAN/MERN dahinter?"
+      ],
+      "tags": ["stack", "mean", "mern", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-mongodb-fit",
+      "topicId": "topic-2-fullstack",
+      "question": "Warum positioniert sich MongoDB als ideale DB für MEAN/MERN?",
+      "answer": "MongoDB, Node.js und React/Angular nutzen alle JavaScript und JSON. Daten fließen in einem einheitlichen Format durch den gesamten Stack — vom Frontend bis in die Datenbank — ohne Umwandlung. Das vereinfacht Entwicklung, Debugging und Datenmodellierung erheblich.",
+      "followUpQuestions": [
+        "Was ist der Unterschied zwischen JSON und BSON?",
+        "Welche Reibung gibt es stattdessen bei SQL-Datenbanken?",
+        "Wie wirkt sich JSON-nativität auf API-Design aus?"
+      ],
+      "tags": ["stack", "mongodb", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-fullstack-benefits",
+      "topicId": "topic-2-fullstack",
+      "question": "Welche Vorteile bringt ein Full-Stack-Entwickler einem Projekt?",
+      "answer": "Komplettes Ownership und Projektverständnis, Zeit- und Kosteneinsparung, schnellere Bug-Fixes, nahtloser Wissenstransfer und Kollaboration sowie bessere Arbeits- und Ressourcenverteilung.",
+      "followUpQuestions": [
+        "Wo liegen die Grenzen des Full-Stack-Modells bei großen Teams?",
+        "Wie wirkt sich das auf die Architektur-Entscheidungen aus?",
+        "Was heißt 'Ownership' konkret im Alltag?"
+      ],
+      "tags": ["stack", "team", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-bank-flow-overview",
+      "topicId": "topic-2-fullstack",
+      "question": "Wie sieht der End-to-End-Fluss einer Banküberweisung über einen MEAN-Stack aus?",
+      "answer": "Nutzer füllt das Überweisungsformular in Angular aus → Angular schickt HTTP-POST mit JSON an Express → Node.js prüft Auth, Autorisierung, Validierung und Deckung → MongoDB führt eine atomare Transaktion aus (Sender -500 €, Empfänger +500 €) und schreibt einen Transaktions-Log → Erfolg geht an Node → Express → Angular, das die Erfolgsmeldung zeigt. In einer gut entwickelten Anwendung: < 1 Sekunde.",
+      "followUpQuestions": [
+        "Welcher Schritt ist die 'erste Stufe der Data Integrity'?",
+        "Welche Stufe ist 'wichtigere, nicht umgehbare' Data Integrity?",
+        "Warum ist die Atomarität so entscheidend?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "mean", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-bank-frontend",
+      "topicId": "topic-2-fullstack",
+      "question": "Was passiert im Frontend (Angular) beim Bankformular?",
+      "answer": "Angular rendert ein Überweisungsformular mit Empfänger, Betrag, Verwendungszweck. Erste Validierungsregeln greifen direkt im Frontend: Ist der Betrag eine gültige Zahl? Ist der Empfänger ausgefüllt? Ist der Betrag > 0? Anschließend sendet Angular einen HTTP-POST mit JSON-Payload (vonKonto, anKonto, betrag, verwendungszweck) ans Backend und zeigt einen Ladeindikator.",
+      "followUpQuestions": [
+        "Warum ist Frontend-Validierung nie ausreichend?",
+        "Welche UX-Vorteile hat client-seitige Validierung trotzdem?",
+        "Wie wird die Request-Struktur definiert (DTO/Schema)?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "frontend", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-bank-auth",
+      "topicId": "topic-2-fullstack",
+      "question": "Wie sichert das Backend (Node/Express) die Banküberweisung ab?",
+      "answer": "Express empfängt den POST und routet ihn (z. B. POST /api/transaktion). Node.js prüft nacheinander: (1) JWT-Token authentifizieren — ungültig/abgelaufen → Ablehnung; (2) Autorisierung — gehört das Konto dem angemeldeten Nutzer; (3) Validierung — Daten korrekt, Zielkonto existiert, Betrag positiv; (4) Deckungsprüfung in der DB.",
+      "followUpQuestions": [
+        "Was ist ein JWT-Token technisch?",
+        "Warum ist Authentifizierung ≠ Autorisierung?",
+        "Welche Fehler-Codes und -Antworten machen hier Sinn?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "backend", "security", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-bank-atomic",
+      "topicId": "topic-2-fullstack",
+      "question": "Was bedeutet die atomare Transaktion im MongoDB-Teil der Überweisung?",
+      "answer": "MongoDB weist beide Operationen gemeinsam aus — Guthaben beim Sender reduzieren UND beim Empfänger erhöhen. Atomar = entweder beide oder keine. Es ist ausgeschlossen, dass ein Konto belastet wird, ohne dass das andere gutgeschrieben wird. Zusätzlich wird ein Transaktionsdatensatz als dauerhaftes Protokoll für Revisionen geschrieben.",
+      "followUpQuestions": [
+        "Wie unterscheiden sich Single-Document- und Multi-Document-Transaktionen?",
+        "Welche Konsistenz-Garantien bietet MongoDB bei Transaktionen?",
+        "Welche Rolle spielt der Transaktionslog für Compliance?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "transaction", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t2-bank-doc",
+      "topicId": "topic-2-fullstack",
+      "question": "Wie sieht ein Konto-Dokument in MongoDB für dieses Beispiel aus?",
+      "answer": "MongoDB speichert Kontodaten als JSON-Dokument, z. B. `{ kontonummer: 'AT12-3456-7890', inhaber: 'Max', guthaben: 1200 }`. Nach Ausführung der Transaktion: Max' Guthaben 1200 → 700, Clemens' Guthaben 300 → 800. Parallel wird ein Transaktionsdatensatz geschrieben.",
+      "followUpQuestions": [
+        "Warum sind Dokumente hier eleganter als relationale Zeilen?",
+        "Welche Indizes wären für diese Collection sinnvoll?",
+        "Wie würde man den Transaktionslog modellieren?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "data-model", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t2-bank-response",
+      "topicId": "topic-2-fullstack",
+      "question": "Wie kommt die Antwort nach erfolgreicher Überweisung ans Frontend zurück?",
+      "answer": "MongoDB bestätigt an Node.js, Node an Express, Express sendet JSON zurück, z. B. `{ status: 'erfolgreich', transaktionsId: 'TXN-20260423-00847', neuesGuthaben: 700 }`. Angular blendet den Ladeindikator aus und zeigt eine Erfolgsmeldung.",
+      "followUpQuestions": [
+        "Welche Statuscodes (HTTP) wären hier passend?",
+        "Wie würde das Fehler-Pattern aussehen (4xx/5xx)?",
+        "Was loggt das Backend zusätzlich für Audit?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "api", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t2-bank-data-integrity",
+      "topicId": "topic-2-fullstack",
+      "question": "Wo liegen die zwei Stufen der Data Integrity beim Bank-Beispiel?",
+      "answer": "Stufe 1 (leichtgewichtig): Angular prüft im Frontend Betrag > 0, Empfänger gefüllt usw. Stufe 2 (entscheidend, nicht umgehbar): Node.js prüft im Backend Authentifizierung, Autorisierung, vollständige Validierung, Deckung und ruft MongoDB für die atomare Transaktion auf. Die zweite Stufe ist kritisch, weil Frontend-Checks im Bypass umgehbar sind.",
+      "followUpQuestions": [
+        "Warum kann man Frontend-Checks umgehen (DevTools, Replay)?",
+        "Welche weiteren Kontrollen würden in regulierten Kontexten dazukommen?",
+        "Wie passt Schema-Validation in MongoDB in diese Stufen?"
+      ],
+      "tags": ["hands-on", "bank-transfer", "security", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    }
+  ]
+}

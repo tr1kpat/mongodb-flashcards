@@ -1,0 +1,459 @@
+{
+  "topic": {
+    "id": "topic-4-performance",
+    "name": "Performance, Availability, Durability, Scalability & CAP",
+    "description": "Indizes, Aggregation Pipeline, Replica-Set-Failover, Multi-Region vs. Atlas Global Cluster, Journal/Oplog, Sharding-Strategien und das CAP-Theorem inkl. CP/AP-Beispielen.",
+    "status": "active",
+    "ref": "PERF"
+  },
+  "cards": [
+    {
+      "id": "t4-perf-index",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein Index in MongoDB und warum macht er Queries schneller?",
+      "answer": "Ein Index ist eine sortierte Datenstruktur, mit der MongoDB Treffer in einer Collection deutlich schneller findet — ohne jeden Datensatz einzeln zu prüfen. Vergleich Telefonbuch: Statt jede Seite durchzulesen, springst du via Daumenregister \"Kunst → K → Seite 99\". Ohne Index: Collection Scan, mit Index: Index Seek.",
+      "followUpQuestions": [
+        "Welche Index-Typen kennt MongoDB (Single, Compound, Geo, Text, Wildcard)?",
+        "Welchen Trade-off bringen Indizes für Writes mit?",
+        "Wie analysiert man, ob ein Index genutzt wird?"
+      ],
+      "tags": ["performance", "index", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t4-perf-compound",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein Compound Index?",
+      "answer": "Ein Compound Index ist ein Index über **mehrere Felder** in einer definierten Reihenfolge. Der zweite Schlüssel greift, sobald der erste eindeutig sortiert hat. Reihenfolge ist entscheidend: ein Index `{country:1, city:1}` beschleunigt Queries nach `country` allein und `country+city`, aber nicht `city` allein.",
+      "followUpQuestions": [
+        "Was bedeutet das ESR-Pattern (Equality, Sort, Range)?",
+        "Wann lohnt ein Compound Index gegenüber zwei Single-Indizes?",
+        "Wie limitiert die Reihenfolge der Felder die nutzbaren Queries?"
+      ],
+      "tags": ["performance", "index", "compound-index", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-perf-planner",
+      "topicId": "topic-4-performance",
+      "question": "Was macht der Query-Planner in MongoDB?",
+      "answer": "Der Query-Planner entscheidet automatisch, welcher Index für eine Query am besten passt. Er probiert mehrere Strategien (\"Plan Cache\"), wählt die mit den wenigsten geprüften Dokumenten und cached die Entscheidung für ähnliche Queries. Mit `explain()` lässt sich der gewählte Plan inspizieren.",
+      "followUpQuestions": [
+        "Was zeigt `explain('executionStats')` an?",
+        "Wann wird der Plan-Cache invalidiert?",
+        "Wie kann man den Planner explizit zu einem Index zwingen (`hint`)?"
+      ],
+      "tags": ["performance", "query-planner", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-perf-cache",
+      "topicId": "topic-4-performance",
+      "question": "Welche Rolle spielt der Cache für MongoDB-Performance?",
+      "answer": "Der Cache hält heiße Daten — also Dokumente und Index-Pages, die häufig angefragt werden — im Arbeitsspeicher. Vergleich: das Telefonbuch liegt schon auf der richtigen Seite offen, statt jedes Mal neu aufgeschlagen zu werden. WiredTiger nutzt einen internen Cache, dessen Größe pro Server konfigurierbar ist (Default ~50 % RAM).",
+      "followUpQuestions": [
+        "Wie dimensioniert man den WiredTiger-Cache richtig?",
+        "Was ist der Working Set, und warum sollte er in den RAM passen?",
+        "Wie misst man Cache-Hit-Ratio in Atlas?"
+      ],
+      "tags": ["performance", "cache", "wiredtiger", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-perf-aggregation",
+      "topicId": "topic-4-performance",
+      "question": "Was ist die Aggregation Pipeline in MongoDB?",
+      "answer": "Die Aggregation Pipeline ist das Werkzeug, um aus rohen Daten Antworten auf komplexe Fragen zu bauen — nicht nur \"Finde Müller\", sondern \"Wie viele Müllers gibt es in München, über 50, mit Beruf Lehrer\". Eine Pipeline ist eine Sequenz von Stages (`$match`, `$group`, `$lookup`, `$project`...), die Dokumente Schritt für Schritt transformieren.",
+      "followUpQuestions": [
+        "Welche Stages gehören zum Standard-Repertoire?",
+        "Was ist `$lookup`, und wie funktioniert es als Join?",
+        "Wann ersetzt Aggregation den BI Connector?"
+      ],
+      "tags": ["performance", "aggregation", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-avail-was",
+      "topicId": "topic-4-performance",
+      "question": "Was bedeutet \"Availability\" in einer Datenbank, und wie wird sie gemessen?",
+      "answer": "Availability ist der prozentuale Anteil der Zeit, in der das System Anfragen beantworten kann. Typische SLAs liegen bei 99,9 % und höher (z. B. 99,995 % bei Atlas Multi-Region). Gemessen wird über monatliche Downtime-Minuten — bei 99,9 % sind ~43 Min/Monat akzeptabel, bei 99,99 % nur ~4 Min/Monat.",
+      "followUpQuestions": [
+        "Wie unterscheiden sich SLA, SLO und SLI?",
+        "Was ist der Unterschied zwischen Availability und Durability?",
+        "Welche Atlas-Tiers bieten welche SLA-Garantien?"
+      ],
+      "tags": ["availability", "sla", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-avail-replica",
+      "topicId": "topic-4-performance",
+      "question": "Wie liefern Replica Sets High Availability?",
+      "answer": "Replica Sets sind die Basis für Verfügbarkeit. Eine typische Gruppe besteht aus drei Knoten — einem **Primary** für Writes und zwei **Secondaries**, die Replication und Read-Offload übernehmen. Jeder Knoten hält denselben Datenbestand, sodass beim Ausfall eines Knotens der Service weiterläuft.",
+      "followUpQuestions": [
+        "Warum sind 3 Knoten der typische Default?",
+        "Welche Read-Concerns nutzen Secondaries für Read-Offload?",
+        "Was ist ein hidden Secondary?"
+      ],
+      "tags": ["availability", "replica-set", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-avail-failover-time",
+      "topicId": "topic-4-performance",
+      "question": "Wie schnell läuft der automatische Failover bei MongoDB ab?",
+      "answer": "Bei Primary-Ausfall registrieren die anderen Knoten den Heartbeat-Verlust nach 10 Sekunden, starten eine Election unter den Secondaries und küren typischerweise innerhalb von **< 12 Sekunden** einen neuen Primary. Der Driver erkennt den Wechsel via SDAM (Server Discovery and Monitoring) und retried die fehlgeschlagene Anfrage automatisch.",
+      "followUpQuestions": [
+        "Was ist der `electionTimeoutMillis`-Parameter?",
+        "Welche Rolle spielen Retryable Writes?",
+        "Was kann den Failover über 12 s hinaus verzögern?"
+      ],
+      "tags": ["availability", "failover", "sdam", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-avail-levels",
+      "topicId": "topic-4-performance",
+      "question": "Welche Availability-Levels gibt es bei MongoDB-Setups?",
+      "answer": "Die Stufen, jeweils mit zusätzlichem Schutz: **Single Node** (kein Schutz) → +Replikation → **Replica Set Multi-AZ** (schützt vor Hardware-/AZ-Ausfall) → +Geo-Verteilung → **Multi-Region Replica Set** (schützt vor Region-Ausfall) → +Provider-Verteilung → **Multi-Cloud Replica Set** (schützt vor Cloud-Provider-Ausfall) → +Sharding mit Daten-Lokalität → **Atlas Global Cluster** (schützt + minimiert Latenz + erfüllt Datenresidenz).",
+      "followUpQuestions": [
+        "Welcher Sprung bringt typisch den größten SLA-Gewinn?",
+        "Wann lohnt Multi-Cloud im Vergleich zu Multi-Region?",
+        "Welche Latenz-Trade-offs bringen die Stufen?"
+      ],
+      "tags": ["availability", "multi-region", "global-cluster", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-avail-uneven",
+      "topicId": "topic-4-performance",
+      "question": "Warum braucht ein Replica Set eine ungerade Anzahl stimmberechtigter Knoten?",
+      "answer": "Bei einer Election muss ein eindeutiger Mehrheitsbeschluss möglich sein, sonst kann es zu einem Split-Brain kommen. Mit einer ungeraden Anzahl (3, 5, 7) gibt es immer eine klare Mehrheit. Bei gerader Anzahl könnte eine 50/50-Teilung den Fortschritt blockieren.",
+      "followUpQuestions": [
+        "Was ist ein Arbiter und wann nutzt man ihn?",
+        "Was ist Split-Brain konkret?",
+        "Welchen Vorteil bringt ein 5-Knoten-Setup gegenüber 3?"
+      ],
+      "tags": ["availability", "replica-set", "election", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-dist-multi-region",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein Multi-Region Replica Set?",
+      "answer": "Ein **einziges** Replica Set, dessen Knoten über mehrere Cloud-Regionen verteilt sind. Es gibt **genau einen Primary** (in einer Region), und jeder Knoten hat den **vollständigen** Datensatz. Schützt vor Region-Ausfall, aber Writes laufen immer durch eine einzige Region.",
+      "followUpQuestions": [
+        "Welche Latenz erleben Schreibvorgänge bei Multi-Region?",
+        "Wie wählt man die Primary-Region?",
+        "Wie unterscheidet sich das von einem Atlas Global Cluster?"
+      ],
+      "tags": ["distribution", "multi-region", "replica-set", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-dist-global",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein Atlas Global Cluster?",
+      "answer": "Ein **Sharded Cluster**, dessen Shards verschiedenen Zonen oder Regionen zugeordnet sind. Es gibt **mehrere Primaries** — einer pro Zone, parallel. Jedes Shard hält nur seine **Partition** der Daten, lokal zur jeweiligen Zone. Das minimiert Latenz für regional zugeordnete User und erfüllt Datenresidenz-Anforderungen (z. B. DSGVO).",
+      "followUpQuestions": [
+        "Welche Rolle spielt Zone Sharding hier?",
+        "Welche Workloads profitieren am meisten?",
+        "Welche operative Komplexität bringt das mit?"
+      ],
+      "tags": ["distribution", "global-cluster", "sharding", "data-residency", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-dist-multi-vs-global",
+      "topicId": "topic-4-performance",
+      "question": "Worin unterscheiden sich Multi-Region Replica Set und Atlas Global Cluster?",
+      "answer": "Multi-Region Replica Set: ein Replica Set über mehrere Regionen, **ein** Primary, jeder Knoten hat **vollständige Daten**. Atlas Global Cluster: ein **Sharded** Cluster, **mehrere** Primaries (einer pro Zone), jedes Shard hält nur seine **Partition**. Beide verteilen Daten geografisch, lösen aber unterschiedliche Probleme: das eine fokussiert auf Failure-Domain-Schutz, das andere auf Latenz und Daten-Lokalität.",
+      "followUpQuestions": [
+        "Welches Setup wählt man für globalen B2C-Traffic?",
+        "Wann reicht Multi-Region, wann braucht es Global Cluster?",
+        "Welche Datenresidenz-Anforderungen treiben Global Cluster?"
+      ],
+      "tags": ["distribution", "multi-region", "global-cluster", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-dist-az-vs-region",
+      "topicId": "topic-4-performance",
+      "question": "Was ist der Unterschied zwischen einer Region und einer Availability Zone (AZ)?",
+      "answer": "Eine **Region** ist eine geografische Cloud-Region (z. B. AWS `eu-central-1` Frankfurt) — Größenordnung Stadt oder Großraum. Eine **Availability Zone** ist ein oder mehrere physisch getrennte Rechenzentren innerhalb einer Region — typischerweise wenige Kilometer voneinander entfernt. Ein Replica Set über mehrere AZs schützt vor RZ-Ausfall, ein Multi-Region-Setup zusätzlich vor regionalen Katastrophen.",
+      "followUpQuestions": [
+        "Wie viele AZs hat eine typische AWS-Region?",
+        "Welche Latenz-Größenordnungen erwartet man inner-AZ vs. inter-Region?",
+        "Wie nutzt Atlas AZs für Replica-Set-Verteilung?"
+      ],
+      "tags": ["distribution", "availability-zone", "region", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-dur-journal",
+      "topicId": "topic-4-performance",
+      "question": "Was ist das Journal in MongoDB und welche Rolle spielt es für Durability?",
+      "answer": "Das Journal ist ein Write-Ahead-Log: jede Schreiboperation wird **zuerst** ins Journal geschrieben und **dann** in die Daten-Files. Bei einem Crash spielt MongoDB beim Neustart das Journal ab und stellt alle Writes seit dem letzten Checkpoint wieder her. Ohne Journal wären unbestätigte Writes nach einem Crash verloren.",
+      "followUpQuestions": [
+        "Wie oft werden Checkpoints geschrieben?",
+        "Welcher Performance-Trade-off entsteht durch Journaling?",
+        "Wie unterscheiden sich Write Concerns `j: true` vs. `j: false`?"
+      ],
+      "tags": ["durability", "journal", "wal", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-dur-oplog",
+      "topicId": "topic-4-performance",
+      "question": "Was ist das Oplog und welche Rolle spielt es für Durability?",
+      "answer": "Das Oplog ist ein Log-Buch im Primary, das **jede Write-Operation** speichert. Secondaries lesen das Oplog vom Primary und replizieren die Operationen lokal. Ohne Oplog gäbe es keine Replikation und damit keine Multi-Knoten-Durability — Daten würden bei Hardware-Ausfall verloren gehen.",
+      "followUpQuestions": [
+        "Wie groß sollte das Oplog dimensioniert sein?",
+        "Was passiert, wenn ein Secondary aus dem Oplog-Window fällt?",
+        "Wie unterscheidet sich Oplog von Journal?"
+      ],
+      "tags": ["durability", "oplog", "replication", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-dur-journal-vs-oplog",
+      "topicId": "topic-4-performance",
+      "question": "Worin unterscheiden sich Journal und Oplog?",
+      "answer": "Das **Journal** ist lokal pro Knoten und sichert Crash-Recovery: nach Neustart spielt der Knoten unbestätigte Writes nach. Das **Oplog** ist die Quelle für Replikation: Secondaries lesen es vom Primary, um den eigenen Datenbestand abzugleichen. Journal löst Single-Node-Durability, Oplog löst Multi-Node-Replication.",
+      "followUpQuestions": [
+        "Welche Latenz-Auswirkung hat `writeConcern: majority`?",
+        "Wann braucht man beide gleichzeitig?",
+        "Wie hängt Change Streams am Oplog?"
+      ],
+      "tags": ["durability", "journal", "oplog", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-scale-vertical",
+      "topicId": "topic-4-performance",
+      "question": "Was bedeutet vertikale Skalierung (Scale-Up) bei MongoDB?",
+      "answer": "Vertikale Skalierung heißt: dem bestehenden Server mehr Ressourcen geben — mehr CPU, mehr RAM, mehr / schnellere NVMe-Disks. Operativ einfach (Atlas erlaubt Live-Tier-Upgrade ohne Downtime), stößt aber an Hardware-Grenzen, und der Kostenanstieg wird mit zunehmender Tier-Größe nicht-linear (super-linear).",
+      "followUpQuestions": [
+        "Bis zu welchem Punkt reicht vertikale Skalierung in der Praxis?",
+        "Was ist Atlas Live-Tier-Upgrade konkret?",
+        "Wann ist scale-up günstiger als scale-out?"
+      ],
+      "tags": ["scalability", "vertical", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-scale-horizontal",
+      "topicId": "topic-4-performance",
+      "question": "Was bedeutet horizontale Skalierung (Scale-Out) bei MongoDB?",
+      "answer": "Horizontale Skalierung heißt: mehr Shards hinzufügen, also Daten und Last auf mehr Server verteilen. Read- und Write-Kapazität skalieren näherungsweise **linear** mit der Shard-Anzahl. Vorhersagbare Kostenkurve, aber höhere operative Komplexität (Shard Key, Config Server, Balancer).",
+      "followUpQuestions": [
+        "Welche operativen Aufgaben kommen mit Sharding hinzu?",
+        "Wann ist Sharding zu früh, wann zu spät?",
+        "Welche Rolle spielt der Balancer?"
+      ],
+      "tags": ["scalability", "horizontal", "sharding", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-shard-range",
+      "topicId": "topic-4-performance",
+      "question": "Was ist Range Sharding?",
+      "answer": "Range Sharding teilt Werte-Ranges des Shard Keys auf Shards auf — z. B. Datensätze mit Datum 2024 auf Shard A, 2025 auf Shard B. Vorteil: Range-Queries (`$gte`, `$lt`) treffen wenige Shards. Nachteil: bei monoton wachsenden Keys (z. B. Timestamp) entsteht ein Hot Shard, weil neue Writes alle auf das letzte Range fallen.",
+      "followUpQuestions": [
+        "Welche Workloads passen zu Range Sharding?",
+        "Wie vermeidet man Hot Shards?",
+        "Wann lohnt eine Mischung aus Range und Hash?"
+      ],
+      "tags": ["scalability", "sharding", "range-sharding", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-shard-hashed",
+      "topicId": "topic-4-performance",
+      "question": "Was ist Hashed Sharding?",
+      "answer": "Hashed Sharding wendet eine Hash-Funktion auf den Shard Key an und verteilt Dokumente damit gleichmäßig über alle Shards. Vorteil: kein Hot Shard auch bei monoton wachsenden Keys. Nachteil: Range-Queries treffen praktisch alle Shards (Scatter-Gather), was sie teurer macht.",
+      "followUpQuestions": [
+        "Wann ist Hashed besser als Range Sharding?",
+        "Welche Trade-offs hat Scatter-Gather bei Range-Queries?",
+        "Wie hashed MongoDB intern?"
+      ],
+      "tags": ["scalability", "sharding", "hashed-sharding", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-shard-zone",
+      "topicId": "topic-4-performance",
+      "question": "Was ist Zone Sharding und wofür wird es eingesetzt?",
+      "answer": "Zone Sharding ordnet Key-Ranges spezifischen Zonen zu — z. B. `country: \"DE\"` auf Shards in Frankfurt, `country: \"US\"` auf Shards in Virginia. Hauptanwendung ist **Data Locality**: Nutzer-nahes Lesen/Schreiben und Compliance mit Datenresidenz-Vorschriften (DSGVO, FedRAMP). Atlas Global Cluster basiert technisch auf Zone Sharding.",
+      "followUpQuestions": [
+        "Wie konfiguriert man Zone-Tags in Atlas?",
+        "Welche Rolle spielt das für DSGVO-konformes Hosting?",
+        "Welche Latenz-Vorteile entstehen für regional verteilte User?"
+      ],
+      "tags": ["scalability", "sharding", "zone-sharding", "data-residency", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-cap-was",
+      "topicId": "topic-4-performance",
+      "question": "Was sind die drei Eigenschaften des CAP-Theorems?",
+      "answer": "Ein verteiltes Datenbanksystem hat drei wünschenswerte Eigenschaften: **Consistency** (alle Knoten sehen dieselben Daten zur selben Zeit), **Availability** (jede Anfrage bekommt eine Antwort) und **Partition Tolerance** (das System läuft weiter, auch wenn Netzwerkverbindungen zwischen Knoten ausfallen).",
+      "followUpQuestions": [
+        "Welche praktische Bedeutung hat jede der drei Eigenschaften?",
+        "Wie definiert MongoDB Consistency konkret?",
+        "Wann ist Availability wichtiger als Consistency?"
+      ],
+      "tags": ["cap", "distributed-systems", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-cap-theorem",
+      "topicId": "topic-4-performance",
+      "question": "Was besagt das CAP-Theorem?",
+      "answer": "Das CAP-Theorem besagt: ein verteiltes System kann **nie alle drei** Eigenschaften (Consistency, Availability, Partition Tolerance) gleichzeitig vollständig garantieren — maximal zwei davon. Bei einer Partition (Kommunikationsabbruch zwischen Knoten) muss man wählen: Konsistenz oder Verfügbarkeit. Beides zusammen ist nicht möglich.",
+      "followUpQuestions": [
+        "Wer hat das CAP-Theorem formuliert?",
+        "Was ist eine Netzwerk-Partition technisch?",
+        "Welche Kritik gibt es am CAP-Theorem (PACELC)?"
+      ],
+      "tags": ["cap", "distributed-systems", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-cap-partition-mandatory",
+      "topicId": "topic-4-performance",
+      "question": "Warum ist Partition Tolerance in der Praxis keine echte Wahl?",
+      "answer": "Netzwerk-Ausfälle sind in verteilten Systemen unvermeidbar — Kabel reißen, Switches fallen aus, AZs verlieren Konnektivität. Sobald das System verteilt ist, **muss** es mit Partitionen umgehen. Die eigentliche CAP-Entscheidung lautet deshalb immer: **CP oder AP** — entweder Konsistenz unter Partition opfern (AP) oder Verfügbarkeit (CP).",
+      "followUpQuestions": [
+        "Wann gilt CA als praktikabel?",
+        "Wie wirkt sich diese Regel auf Cloud-DB-Design aus?",
+        "Was passiert in Single-Node-Setups?"
+      ],
+      "tags": ["cap", "partition", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-cap-cp-system",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein CP-System, und wie verhält es sich bei einer Partition?",
+      "answer": "Ein CP-System (Consistency + Partition Tolerance) gewährleistet, dass die Daten auch bei Netzwerkausfällen konsistent bleiben. Bei einer Partition antwortet es lieber mit einem Fehler oder verzögert die Antwort, bis Updates bestätigt sind — Konsistenz hat Vorrang vor Verfügbarkeit.",
+      "followUpQuestions": [
+        "Wie verhält sich MongoDB als CP-System konkret?",
+        "Welche Apps brauchen CP zwingend?",
+        "Welche Latenz-Trade-offs entstehen?"
+      ],
+      "tags": ["cap", "consistency", "cp", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-cap-ap-system",
+      "topicId": "topic-4-performance",
+      "question": "Was ist ein AP-System, und wie verhält es sich bei einer Partition?",
+      "answer": "Ein AP-System (Availability + Partition Tolerance) gewährleistet hohe Verfügbarkeit auch bei Netzwerkausfällen. Es liefert weiterhin Antworten, kann aber unter Umständen leicht inkonsistente oder veraltete Daten zurückgeben. Cassandra und DynamoDB (im Default) sind klassische AP-Systeme.",
+      "followUpQuestions": [
+        "Was ist eventual consistency in diesem Kontext?",
+        "Welche Apps wählen AP bewusst?",
+        "Wie reconciliert man inkonsistente Stände nachträglich?"
+      ],
+      "tags": ["cap", "availability", "ap", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-cap-mongodb",
+      "topicId": "topic-4-performance",
+      "question": "Wie verhält sich MongoDB im CAP-Theorem?",
+      "answer": "MongoDB ist **CP by default**: Bei einer Partition steppt der Primary down, statt ein Split-Brain zu riskieren — Konsistenz hat Vorrang. Die App erlebt kurzzeitig einen Fehler, sieht aber nie veraltete Daten. Über Write Concerns und Read Preferences lässt sich das Verhalten in Richtung AP tunen (`w:1` + `readPreference: secondary` + `readConcern: local`).",
+      "followUpQuestions": [
+        "Was passiert mit Writes während des Step-Down?",
+        "Wann lohnt sich das Tuning Richtung AP?",
+        "Wie verhalten sich Atlas Global Cluster im CAP-Modell?"
+      ],
+      "tags": ["cap", "mongodb", "cp", "tunable-consistency", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    },
+    {
+      "id": "t4-cap-ap-example",
+      "topicId": "topic-4-performance",
+      "question": "Welches reale Beispiel illustriert eine AP-Wahl?",
+      "answer": "**Chat-App (Slack, Teams):** Nachrichten werden in mehreren Regionen gespeichert. Bricht die Verbindung zwischen zwei Regionen, läuft der Chat trotzdem überall weiter. Die verzögerte Region holt sich die fehlenden Nachrichten nach, sobald die Verbindung wieder steht — kurzer Lag wird akzeptiert, niemand wird blockiert. Verfügbarkeit gewinnt vor strikter Konsistenz.",
+      "followUpQuestions": [
+        "Welche Konflikte können dabei entstehen?",
+        "Wie löst man Reihenfolge-Konflikte bei Nachrichten?",
+        "Welche Social-Media-Feeds sind ähnlich?"
+      ],
+      "tags": ["cap", "ap", "example", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t4-cap-cp-example",
+      "topicId": "topic-4-performance",
+      "question": "Welches reale Beispiel illustriert eine CP-Wahl?",
+      "answer": "**Bank-App / Überweisung / ATM:** Bei einem Netzwerk-Problem mitten in der Überweisung stoppt die Transaktion komplett, bis die Verbindung wieder steht. So werden doppelte Buchungen und falsche Salden verhindert — jeder Knoten sieht erst dann den neuen Stand, wenn alle synchron sind. Konsistenz gewinnt vor Verfügbarkeit.",
+      "followUpQuestions": [
+        "Welche User-Experience entsteht aus dieser Wahl?",
+        "Welche regulatorischen Anforderungen treiben CP?",
+        "Wie verhält sich MongoDBs atomare Transaktion hier?"
+      ],
+      "tags": ["cap", "cp", "example", "difficulty-easy"],
+      "source": "notion",
+      "difficulty": "easy"
+    },
+    {
+      "id": "t4-cap-ca-example",
+      "topicId": "topic-4-performance",
+      "question": "Wann ist ein CA-System (Consistency + Availability ohne Partition Tolerance) realistisch?",
+      "answer": "CA gilt nur für **Single-Node-Datenbanken** in einem Rechenzentrum — z. B. eine PostgreSQL- oder MySQL-Instanz auf einem einzelnen Server. Da kein Netzwerk zwischen Knoten existiert, sind Partitionen schlicht unmöglich. Das System ist immer konsistent und immer verfügbar, solange der Server selbst läuft. Sobald man das System verteilt, fällt CA aus.",
+      "followUpQuestions": [
+        "Warum kann ein verteiltes System nie CA sein?",
+        "Welche Risiken bringt die Single-Node-Architektur?",
+        "Wann lohnt sich ein bewusster CA-Single-Node?"
+      ],
+      "tags": ["cap", "ca", "example", "difficulty-medium"],
+      "source": "notion",
+      "difficulty": "medium"
+    },
+    {
+      "id": "t4-cap-tradeoff",
+      "topicId": "topic-4-performance",
+      "question": "Was wird in den drei CAP-Kombinationen jeweils geopfert?",
+      "answer": "**AP:** opfert strikte Konsistenz — kurzer Lag wird akzeptiert, niemand wird blockiert. **CP:** opfert Verfügbarkeit für ~12 s während Failover — verhindert doppelte Buchungen und falsche Salden. **CA:** opfert Partition Tolerance — sobald das System verteilt wird und das Netzwerk ausfällt, fällt das System komplett aus. Es gibt keine kostenlose Wahl.",
+      "followUpQuestions": [
+        "Welche Beispiel-Apps passen zu welcher Wahl?",
+        "Wie wirkt sich die Wahl auf Architektur-Entscheidungen aus?",
+        "Was ist das PACELC-Theorem als Erweiterung?"
+      ],
+      "tags": ["cap", "trade-off", "difficulty-hard"],
+      "source": "notion",
+      "difficulty": "hard"
+    }
+  ]
+}
